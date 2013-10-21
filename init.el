@@ -1,9 +1,3 @@
-;; User pack init file
-;;
-;; Use this file to initiate the pack configuration.
-;; See README for more information.
-
-;; Load bindings config
 (live-load-config-file "bindings.el")
 
 (color-theme-gandalf)
@@ -14,3 +8,5 @@
 (global-set-key (kbd "C-c <down>") 'windmove-down)
 
 (when (fboundp 'winner-mode) (winner-mode 0))
+
+(setq zone-programs [zone-pgm-drip])
