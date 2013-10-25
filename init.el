@@ -7,6 +7,8 @@
 (global-set-key (kbd "C-c <up>") 'windmove-up)
 (global-set-key (kbd "C-c <down>") 'windmove-down)
 
+(global-set-key (kbd "C-c C-s") 'zone)
+
 (when (fboundp 'winner-mode) (winner-mode 0))
 
 (setq zone-programs [zone-pgm-drip])
