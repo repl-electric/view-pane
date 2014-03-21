@@ -25,7 +25,7 @@
 
      (font-lock-builtin-face ((t (:foreground "#F9790A"))))
      (font-lock-comment-face ((t (:italic t :foreground "#7B8989"))))
-     (font-lock-constant-face ((t (:foreground "#284EC0"))))
+     (font-lock-constant-face ((t (:foreground "#2903EC"))))
      (font-lock-doc-string-face ((t (:foreground "#503684"))))
      (font-lock-function-name-face ((t (:foreground "#FDDD0C"))))
      (font-lock-keyword-face ((t (:foreground "#BE0026"))))
@@ -41,7 +41,7 @@
 
      (gui-element ((t (:background "gray10" :foreground "#96CBFE"))))
      ;;     (region ((t (:foreground "black" :background "#7F073F"))))
-     (region ((t ( :background "#9DDDDD"))))
+     (region ((t ( :background "#F30007"))))
      (mode-line ((t (:background "gray10" :foreground "#4c83ff"))))
      (mode-line-inactive ((t (:background "gray10" :foreground "gray30"))))
 
@@ -74,7 +74,7 @@
      (magit-diff-hunk-header ((t (:foreground "orange"))))
      (magit-branch ((t (:foreground "gold"))))
 
-     (eval-sexp-fu-flash ((t (:background "grey15" :foreground "DeepPink3"))))
+     (eval-sexp-fu-flash ((t (:background "grey15" :foreground "#BF1010"))))
      (nrepl-error-highlight-face ((t (:background "color-52"))))
      (ac-completion-face ((t (:foreground "darkgray" :underline t))))
      (ac-candidate-face ((t (:background "gray60" :foreground "black"))))
