@@ -21,7 +21,7 @@
      (bold ((t (:bold t))))
      (bold-italic ((t (:bold t))))
      (border-glyph ((t (nil))))
-     (buffers-tab ((t (:background "#0C1021" :foreground "#F8F8F8"))))
+     (buffers-tab ((t (:background "#284EC0" :foreground "#F8F8F8"))))
 
      (font-lock-builtin-face ((t (:foreground "#FF6600"))))
      (font-lock-comment-face ((t (:italic t :foreground "#7B8989"))))
