@@ -1,6 +1,8 @@
 (live-load-config-file "bindings.el")
 
-(color-theme-gandalf)
+(load "~/.live-packs/josephwilk-pack/electric.el")
+
+(color-theme-electric)
 
 (live-use-dev-packs)
 
