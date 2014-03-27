@@ -15,11 +15,8 @@
 
 (when (fboundp 'winner-mode) (winner-mode 0))
 
-
-
 (defun zone-fall-through-ws-re (c col wend)
   (let ((fall-p nil)                    ; todo: move outward
-        (wait 0)
         (o (point))                     ; for terminals w/o cursor hiding
         (p (point)))
     (while (progn
@@ -34,8 +31,8 @@
         (delete-char 1)
         (insert " ")
         (goto-char o)
-        (sit-for (setq wait 0)))
-      (setq p (1- (point))))
+        (sit-for 0))
+      (setq p (- (point) 1)))
     fall-p))
 
 (defun zone-fret-re (pos)
@@ -45,14 +42,16 @@
                ((string-match "[a-z]" c-string) (upcase c-string))
                ((string-match "[A-Z]" c-string) (downcase c-string))
                (t " "))))
-    (do ((i 0 (1+ i))
-         (wait 0))
+    (do ((i 0 (1+ i)))
         ((= i 20))
       (goto-char pos)
       (delete-char 1)
       (insert (if (= 0 (% i 2)) hmm c-string))
-      (sit-for 0))
+      )
     (delete-char -1) (insert c-string)))
+
+(defun zone-cpos (pos)
+  (buffer-substring pos (+ 1 pos)))
 
 (defun zone-pgm-repl-electric (&optional fret-p pancake-p)
   (let* ((ww (1- (window-width)))
@@ -81,7 +80,6 @@
     (catch 'done; ugh
       (while (not (input-pending-p))
         (goto-char (point-min))
-        ;;(sit-for 0)
         (let ((wbeg (window-start))
               (wend (window-end)))
           (setq mc 0)
@@ -104,13 +102,13 @@
                       wh))
           (previous-line 1)
           (forward-char 1)
-          ;;          (sit-for 0.037)
+          (sit-for 0.37)
           (delete-char -1)
           (insert "@")
-          ;;          (sit-for 0.037)
+          (sit-for 0.37)
           (delete-char -1)
           (insert "*")
-          ;;          (sit-for 0.037)
+          (sit-for 0.37)
           (delete-char -1)
           (insert "_"))))))
 
