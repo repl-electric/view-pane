@@ -15,7 +15,128 @@
 
 (when (fboundp 'winner-mode) (winner-mode 0))
 
-(setq zone-programs [zone-pgm-drip])
+
+
+(defun zone-fall-through-ws-re (c col wend)
+  (let ((fall-p nil)                    ; todo: move outward
+        (wait 0)
+        (o (point))                     ; for terminals w/o cursor hiding
+        (p (point)))
+    (while (progn
+             (forward-line 1)
+             (move-to-column col)
+             (looking-at " "))
+      (setq fall-p t)
+      (delete-char 1)
+      (insert (if (< (point) wend) c " "))
+      (save-excursion
+        (goto-char p)
+        (delete-char 1)
+        (insert " ")
+        (goto-char o)
+        (sit-for (setq wait 0)))
+      (setq p (1- (point))))
+    fall-p))
+
+(defun zone-fret-re (pos)
+  (let* ((case-fold-search nil)
+         (c-string (zone-cpos pos))
+         (hmm (cond
+               ((string-match "[a-z]" c-string) (upcase c-string))
+               ((string-match "[A-Z]" c-string) (downcase c-string))
+               (t " "))))
+    (do ((i 0 (1+ i))
+         (wait 0))
+        ((= i 20))
+      (goto-char pos)
+      (delete-char 1)
+      (insert (if (= 0 (% i 2)) hmm c-string))
+      (sit-for 0))
+    (delete-char -1) (insert c-string)))
+
+(defun zone-pgm-repl-electric (&optional fret-p pancake-p)
+  (let* ((ww (1- (window-width)))
+         (wh (window-height))
+         (mc 0)                         ; miss count
+         (total (* ww wh))
+         (fall-p nil))
+    (goto-char (point-min))
+    ;; fill out rectangular ws block
+    (while (not (eobp))
+      (end-of-line)
+      (let ((cc (current-column)))
+        (if (< cc ww)
+            (insert (make-string (- ww cc) ? ))
+          (delete-char (- ww cc))))
+      (unless (eobp)
+        (forward-char 1)))
+    ;; what the hell is going on here?
+    (let ((nl (- wh (count-lines (point-min) (point)))))
+      (when (> nl 0)
+        (let ((line (concat (make-string (1- ww) ? ) "\n")))
+          (do ((i 0 (1+ i)))
+              ((= i nl))
+            (insert line)))))
+    ;;
+    (catch 'done; ugh
+      (while (not (input-pending-p))
+        (goto-char (point-min))
+        ;;(sit-for 0)
+        (let ((wbeg (window-start))
+              (wend (window-end)))
+          (setq mc 0)
+          ;; select non-ws character, but don't miss too much
+          (goto-char (+ wbeg (random (- wend wbeg))))
+          (while (looking-at "[ \n\f]")
+            (if (= total (setq mc (1+ mc)))
+                (throw 'done 'sel)
+              (goto-char (+ wbeg (random (- wend wbeg))))))
+          ;; character animation sequence
+          (let ((p (point)))
+            (when fret-p (zone-fret-re p))
+            (goto-char p)
+            (setq fall-p (zone-fall-through-ws-re
+                          (zone-cpos p) (current-column) wend))))
+        ;; assuming current-column has not changed...
+        (when (and pancake-p
+                   fall-p
+                   (< (count-lines (point-min) (point))
+                      wh))
+          (previous-line 1)
+          (forward-char 1)
+          ;;          (sit-for 0.037)
+          (delete-char -1)
+          (insert "@")
+          ;;          (sit-for 0.037)
+          (delete-char -1)
+          (insert "*")
+          ;;          (sit-for 0.037)
+          (delete-char -1)
+          (insert "_"))))))
+
+(eval-after-load "zone"
+  '(unless (memq 'zone-pgm-repl-electric (append zone-programs nil))
+     (setq zone-programs [zone-pgm-repl-electric])))
+
+(defun zone-pgm-md5 ()
+  "MD5 the buffer, then recursively checksum each hash."
+  (let ((prev-md5 (buffer-substring-no-properties ;; Initialize.
+                   (point-min) (point-max))))
+    ;; Whitespace-fill the window.
+    (zone-fill-out-screen (window-width) (window-height))
+    (random t)
+    (goto-char (point-min))
+    (while (not (input-pending-p))
+      (when (eobp)
+        (goto-char (point-min)))
+      (while (not (eobp))
+        (delete-region (point) (line-end-position))
+        (let ((next-md5 (md5 prev-md5)))
+          (insert next-md5)
+          (setq prev-md5 next-md5))
+        (forward-line 1)
+                  (zone-park/sit-for (point-min) 0.1)))))
+
 
 (defun music-layout () "Music split"
   (interactive)
