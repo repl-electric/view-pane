@@ -1,0 +1,3 @@
+#name: bc
+# --
+(pattern ${1:buffer} [${2:pattern}])
