@@ -15,6 +15,11 @@
 
 (when (fboundp 'winner-mode) (winner-mode 0))
 
+(require 'yasnippet)
+(setq yas-snippet-dirs (append yas-snippet-dirs
+  '("~/.live-packs/josephwilk-pack/snippets")))
+(yas-reload-all)
+
 (defun zone-fall-through-ws-re (c col wend)
   (let ((fall-p nil)                    ; todo: move outward
         (o (point))                     ; for terminals w/o cursor hiding
