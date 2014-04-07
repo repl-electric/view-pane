@@ -1,0 +1,16 @@
+#name: soprano
+# --
+(do 
+  (defonce soprano-note-buf (buffer 128)) 
+  (defonce soprano-seq-buf (buffer 128)) 
+  (def singers-g (group "singers")))
+
+(def singers (doseq [i (range 0 3)]
+               (slow-singer
+                [:head singers-g]
+                :note-buf b :amp 2.9
+                :beat-b (:beat time/beat-4th) :count-b (:count time/beat-4th)
+                :seq-b seq-b
+                :beat-num i
+                :num-steps 3)))
+${}

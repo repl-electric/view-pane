@@ -1,0 +1,17 @@
+#name: kick
+# --
+(do
+(defonce drums-g        (group "drums"))
+(defonce kick-seq-buf   (buffer 16))
+(defonce bass-notes-buf (buffer 16))
+
+(doseq [i (range 0 16)]
+  (kick2
+   [:head drums-g]
+   :note-buf bass-notes-buf
+   :seq-buf  kick-seq-buf
+   :beat-bus     (:count time/beat-1th)
+   :beat-trg-bus (:beat time/beat-1th)
+   :num-steps 16
+   :beat-num i)))
+${}
