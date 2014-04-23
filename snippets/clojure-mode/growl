@@ -1,0 +1,8 @@
+#name: growl
+# --
+(do
+(defonce bass-g (group "bass"))
+(defonce growl-buf (buffer 128))
+(def growl-synth (growl [:head bass-g] :amp 0 :beat-trg-bus (:beat time/beat-1th) :beat-bus (:count time/beat-1th) :note-buf growl-buf)))
+
+(pattern! growl-buf ${1:pattern})

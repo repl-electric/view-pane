@@ -14,4 +14,3 @@
    :beat-trg-bus (:beat time/beat-1th)
    :num-steps 16
    :beat-num i)))
-${}

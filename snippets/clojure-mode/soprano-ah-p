@@ -1,0 +1,15 @@
+#name: soprano-ah-p
+# --
+(do
+(defonce singers-g (group "singers"))
+(defonce note-buf (buffer 128))
+(defonce seq-b1 (buffer 128))
+(doseq [i (range 0 3)]
+  (slow-singer
+   [:head singers-g]
+   :note-buf note-buf :amp 2.9
+   :beat-b (:beat time/beat-4th) :count-b (:count time/beat-4th)
+   :seq-b seq-b1
+   :beat-num i
+   :index-b ah-index-buffer
+   :num-steps 3)))

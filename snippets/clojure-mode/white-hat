@@ -1,0 +1,16 @@
+#name white-hat
+(do
+(defonce drums-g (group "drums"))
+(defonce white-seq-buf (buffer 128))
+(def white (doall (map
+                   #(whitenoise-hat
+                     [:head drums-g]
+                     :amp 0.2
+                     :seq-buf  white-seq-buf
+                     :beat-bus     (:count time/beat-1th)
+                     :beat-trg-bus (:beat time/beat-1th)
+                     :num-steps 24
+                     :beat-num %1) (range 0 24)))))
+
+(pattern! white-seq-buf [1 0 ])
+(pattern! white-seq-buf (repeat 3 [1 0 0 0]) [1 1 1 1])
