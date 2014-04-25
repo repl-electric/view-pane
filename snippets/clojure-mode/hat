@@ -1,0 +1,19 @@
+#name: hat
+# --
+(do
+(defonce bass-notes-buf (buffers 128))
+(defonce hats-buf (buffers 128))
+(def hats
+    (doall (map #(high-hats
+                  [:head drums-g]
+                  :amp 0.2
+                  :mix (nth (take 32 (cycle [1.0 1.0])) %1)
+                  :room 4
+                  :note-buf bass-notes-buf
+                  :seq-buf hats-buf
+                  :beat-bus     (:count time/beat-1th)
+                  :beat-trg-bus (:beat time/beat-1th) :num-steps 32 :beat-num %1) (range 0 32))))
+
+(pattern! hats-buf (repeat 1 [0 0 0 0  0 0 0 0]))
+)
+(ctl hats :damp 1.9 :mix 0.9 :room 50 :amp 0.2)

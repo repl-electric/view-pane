@@ -13,4 +13,9 @@
    :beat-bus     (:count time/beat-1th)
    :beat-trg-bus (:beat time/beat-1th)
    :num-steps 16
-   :beat-num i)))
+   :beat-num i))
+   
+(pattern! bass-notes-buf [])
+(pattern! kick-seq-buf [0 0 0 0  0 0 0 0])
+)
+   

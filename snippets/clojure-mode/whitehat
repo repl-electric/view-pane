@@ -1,4 +1,5 @@
-#name white-hat
+#name: whitehat
+# --
 (do
 (defonce drums-g (group "drums"))
 (defonce white-seq-buf (buffer 128))
