@@ -14,9 +14,10 @@
    :index-b yeh-index-buffer
    :num-steps 3))
    
-(pattern! yeh-seq-buf [0 0 0 0]
-                      [0 0 0 0]
-                      [0 0 0 0]
-                      [0 0 0 0]
-                      [0 0 0 0])
+(pattern! yeh-seq-buf 
+          [0 0 0 0]
+          [0 0 0 0]
+          [0 0 0 0]
+          [0 0 0 0]
+          [0 0 0 0])
 )

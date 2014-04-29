@@ -14,10 +14,11 @@
    :index-b ah-index-buffer
    :num-steps 3))
 
-(pattern! ah-seq-buf [0 0 0 0]
-                     [0 0 0 0]
-                     [0 0 0 0]
-                     [0 0 0 0]
-                     [0 0 0 0])
+(pattern! ah-seq-buf 
+          [0 0 0 0]
+          [0 0 0 0]
+          [0 0 0 0]
+          [0 0 0 0]
+          [0 0 0 0])
 )
 
