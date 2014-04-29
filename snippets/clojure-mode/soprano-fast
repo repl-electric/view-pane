@@ -1,0 +1,32 @@
+#name: soprano-fast
+# --
+(do
+(defonce singers-g (group "singers"))
+(defonce note2-buf (buffer 128))
+(defonce sing-attack (buffer 128))
+
+(def fast-singing (fast-varied-singer
+                   [:head singers-g]
+                   :note-buf note2-buf :amp 0
+                   :beat-b (:beat time/beat-1th) :count-b (:count time/beat-1th)
+                   :attack-b sing-attack))
+)
+
+(pattern! sing-attack
+          (repeat 2 [1 1 1/12 1/12])
+          (repeat 2 [2 2 2 2]))
+
+(pattern! sing-attack
+          (repeat 2 [1/32]))
+
+(pattern! note2-buf
+          (repeat 2 [70 68 70 69])
+          (repeat 2 [69 70 0 0])
+          (repeat 2 [69 68 69 68])
+          (repeat 2 [69 69 0 0])
+          (repeat 4 [70 68 70 68])
+          (repeat 4 [69 68 0 0])
+          (repeat 4 [70 69 70 69])
+          (repeat 4 [70 70 70 70]))
+
+(node-overtime fast-singing :amp 0.0 0.2 0.01)

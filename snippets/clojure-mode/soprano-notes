@@ -1,0 +1,4 @@
+#name: soprano-notes
+# --
+(pattern! note-buf [:Eb4 :D4 :E4 :D4 :D4 :D4 :E4])
+(pattern! note-buf [70 70 69 69 68 68 70 70])
