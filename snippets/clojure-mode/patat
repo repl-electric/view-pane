@@ -1,0 +1,4 @@
+#name: patat
+# --
+(pattern-at! ${1:buffer} time/main-beat 32 
+  [${2:pattern}])
