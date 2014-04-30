@@ -1,0 +1,4 @@
+#name: graphic-timing
+# --
+(def beats (buffer->tap kick-seq-buf (:count time/beat-1th)))
+$0

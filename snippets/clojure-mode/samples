@@ -1,0 +1,10 @@
+#name: samples
+# --
+(schedule-sample mm-low-s time/main-beat :mod-size 64 :amp 0.9)
+(schedule-sample mm-high-s time/main-beat :mod-size 64 :amp 0.2)
+(schedule-sample whisper-s time/main-beat :mod-size 64 :amp 0.09)
+(mono-player moore-s :amp 1 :rate 1)
+(echoey-buf :b moore-s)
+(spacy moore-s)
+(echoey-buf signals-s)
+(spacy signals-s :amp 2.3)
