@@ -11,6 +11,7 @@
                    :beat-b (:beat time/beat-1th) :count-b (:count time/beat-1th)
                    :attack-b sing-attack))
 )
+$0
 
 (pattern! sing-attack
           (repeat 2 [1 1 1/12 1/12])
