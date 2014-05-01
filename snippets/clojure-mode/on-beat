@@ -1,3 +1,0 @@
-#name: on-beat
-# --
-(on-beat-trigger ${1:beat} ${2:fun})

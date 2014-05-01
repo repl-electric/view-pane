@@ -1,0 +1,4 @@
+#name: ovt
+# --
+(overtime! ${1:node} ${:increment})
+$0
