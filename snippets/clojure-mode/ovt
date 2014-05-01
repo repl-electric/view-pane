@@ -1,4 +1,4 @@
 #name: ovt
 # --
-(overtime! ${1:node} ${:increment})
+(overtime! ${1:node} ${:target} ${:increment})
 $0
