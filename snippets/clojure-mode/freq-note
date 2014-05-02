@@ -1,0 +1,3 @@
+# name: freq-note
+# --
+:freq (midi->hz (note $0))
