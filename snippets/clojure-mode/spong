@@ -1,0 +1,15 @@
+#name: spong
+# --
+
+(do
+(defonce shrill-dur3-buf  (buffer 96))
+(defonce shrill-pong3-buf (buffer 96))
+(defonce voice-g (group "voice"))
+
+(pattern! shrill-dur3-buf
+          (repeat 4 [1/8 1/8 1/2 1/2])
+          (repeat 4 [1/12 1/12 1/12 1/12]))
+
+(pattern! shrill-pong3-buf (degrees [$0] :major :A2))
+
+(def s3 (shrill-pong [:head voice-g] :amp 1.2 :note-buf shrill-pong3-buf :duration-bus shrill-dur3-buf :beat-bus (:count time/beat-1th) :beat-trg-bus (:beat time/beat-1th))))
