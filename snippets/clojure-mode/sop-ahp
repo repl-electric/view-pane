@@ -1,23 +1,24 @@
-#name: soprano-ahf
+#name: sop-ahp
 # --
 (do
 (defonce singers-g (group "singers"))
 (defonce note-buf (buffer 128))
-(defonce ahf-seq-buf (buffer 128))
+(defonce ah-seq-buf (buffer 128))
 (doseq [i (range 0 3)]
   (slow-singer
    [:head singers-g]
    :note-buf note-buf :amp 2.9
    :beat-b (:beat time/beat-4th) :count-b (:count time/beat-4th)
-   :seq-b ahf-seq-buf
+   :seq-b ah-seq-buf
    :beat-num i
-   :index-b ah-strong-index-buffer
+   :index-b ah-index-buffer
    :num-steps 3))
 
-(pattern! ahf-seq-buf 
+(pattern! ah-seq-buf 
           [0 0 0 0]
           [0 0 0 0]
           [0 0 0 0]
           [0 0 0 0]
           [0 0 0 0])
 )
+

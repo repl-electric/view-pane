@@ -1,4 +1,4 @@
-#name: soprano-yeh
+#name: sop-yeh
 # --
 (do
 (defonce singers-g (group "singers"))

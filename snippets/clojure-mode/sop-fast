@@ -1,4 +1,4 @@
-#name: soprano-fast
+#name: sop-fast
 # --
 (do
 (defonce singers-g (group "singers"))

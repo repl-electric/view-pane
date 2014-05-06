@@ -3,7 +3,7 @@
 (do
 (defonce bass-g (group "bass"))
 (defonce growl-buf (buffer 128))
-(def growl-synth (growl [:head bass-g] :amp 0 :beat-trg-bus (:beat time/beat-1th) :beat-bus (:count time/beat-1th) :note-buf growl-buf)))
+(def growl-synth (growl [:head bass-g] :amp 0 :beat-trg-bus (:beat time/beat-16th) :beat-bus (:count time/beat-16th) :note-buf growl-buf)))
 
 (fade-in growl-synth)
 
