@@ -14,7 +14,7 @@
    :index-b ah-strong-index-buffer
    :num-steps 3))
 
-(pattern! ah-seq-buf 
+(pattern! ahf-seq-buf 
           [0 0 0 0]
           [0 0 0 0]
           [0 0 0 0]
