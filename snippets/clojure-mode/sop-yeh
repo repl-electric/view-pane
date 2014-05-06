@@ -4,17 +4,10 @@
 (defonce singers-g (group "singers"))
 (defonce note-buf (buffer 128))
 (defonce yeh-seq-buf (buffer 128))
-(doseq [i (range 0 3)]
-  (slow-singer
-   [:head singers-g]
-   :note-buf note-buf :amp 2.9
-   :beat-b (:beat time/beat-4th) :count-b (:count time/beat-4th)
-   :seq-b yeh-seq-buf
-   :beat-num i
-   :index-b yeh-index-buffer
-   :num-steps 3))
+(doseq [i (range 0 3)] (slow-singer [:head singers-g] :note-buf note-buf :amp 2.9 :beat-b (:beat time/beat-4th) :count-b (:count time/beat-4th) :seq-b yeh-seq-buf :beat-num i :index-b yeh-index-buffer :num-steps 3))
    
 (pattern! yeh-seq-buf 
+          [0 0 0 0]
           [0 0 0 0]
           [0 0 0 0]
           [0 0 0 0]

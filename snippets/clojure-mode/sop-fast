@@ -5,12 +5,7 @@
 (defonce note2-buf (buffer 128))
 (defonce sing-attack (buffer 128))
 
-(def fast-singing (fast-varied-singer
-                   [:head singers-g]
-                   :note-buf note2-buf :amp 0
-                   :beat-b (:beat time/beat-1th) :count-b (:count time/beat-1th)
-                   :attack-b sing-attack))
-)
+(def fast-singing (fast-varied-singer [:head singers-g] :note-buf note2-buf :amp 0 :beat-b (:beat time/beat-1th) :count-b (:count time/beat-1th) :attack-b sing-attack)))
 $0
 
 (pattern! sing-attack
