@@ -4,4 +4,7 @@
 (do 
 (defonce drum-effects-g (group "drum effects"))
 (defonce effects-seq-buf (buffer 16))
-(doseq [i (range 0 16)](seqer [:head drum-effects-g] :beat-num i :pattern effects2-seq-buf :beat-bus (:count time/beat-1th) :beat-trg-bus (:beat time/beat-1th) :amp 0.1 :num-steps 16 :buf (b/buffer-mix-to-mono $0)) (range 0 16)))
+(doseq [i (range 0 16)](seqer [:head drum-effects-g] :beat-num i :pattern effects2-seq-buf :beat-bus (:count time/beat-1th) :beat-trg-bus (:beat time/beat-1th) :amp 0.1 :num-steps 16 :buf (b/buffer-mix-to-mono $0)) (range 0 16))
+
+(pattern! [$0)
+)
