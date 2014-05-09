@@ -25,4 +25,4 @@ $0
           (repeat 4 [70 69 70 69])
           (repeat 4 [70 70 70 70]))
 
-(node-overtime fast-singing :amp 0.0 0.2 0.01)
+(fadein fast-singing 0.2 0.01)
