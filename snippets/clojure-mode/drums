@@ -1,6 +1,10 @@
-(do (defonce drums-g (group "drums") (defonce drum-effects-g (group "drums effects for extra sweetness")) (defbufs 96 [bass-notes-buf hats-buf kick-seq-buf white-seq-buf effects-seq-buf effects2-seq-buf bass-notes-buf])))
-$0
-(pattern! kick-seq-buf  [1 0 0 0 0 0 0 0])
+(do (defonce drums-g (group "drums") (defonce drum-effects-g (group "drums effects for extra sweetness")) (defbufs 96 [bass-notes-buf hats-buf kick-seq-buf white-seq-buf effects-seq-buf effects2-seq-buf bass-notes-buf]))
+(pattern! kick-seq-buf  [0])
+(pattern! bass-notes-buf (repeat 2 (repeat 4 [:B1 :B1 :B1 :B1]))
+                         (repeat 2 (repeat 4 [:E#1 :E#1 :E#1 :E#1]))
+                         (repeat 2 (repeat 4 [:F#1 :F#1 :F#1 :F#1]))))
+
+(pattern! kick-seq-buf  [$0])
 (pattern! hats-buf      [0 0 0 0 0 0 1 1])
 (pattern! white-seq-buf [0 1 1 0 1 0 1 1])
 
