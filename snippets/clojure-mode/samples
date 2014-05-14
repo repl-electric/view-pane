@@ -4,6 +4,7 @@
 (schedule-sample mm-high-s time/main-beat :mod-size 64 :amp 0.2)
 (schedule-sample whisper-s time/main-beat :mod-size 64 :amp 0.09)
 (mono-player moore-s :amp 1 :rate 1)
+(mono-player the-sound-of-live-coding-s :amp 0.5 :rate 0.99)
 (echoey-buf :b moore-s)
 (spacy moore-s)
 (echoey-buf signals-s)

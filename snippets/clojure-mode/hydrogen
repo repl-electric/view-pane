@@ -1,0 +1,9 @@
+#name: hydrogen
+# --
+
+(do (defonce hydrogren-note-buf (buffer 96)) (defonce hydrogren-dur-buf (buffer 96)) (defonce voice-g (group "voice"))
+
+(pattern! hydrogen-dur-buf  (repeat 4 [1/8 1/8 1/2 1/2]) (repeat 4 [1/12 1/12 1/12 1/12]))
+(pattern! hydrogen-note-buf (degrees [$0] :major :A2))
+
+(def hydrogen (shrill-pong [:head voice-g] :amp 1.2 :note-buf hydrogen-note-buf :duration-bus hydrogen-dur-buf))
