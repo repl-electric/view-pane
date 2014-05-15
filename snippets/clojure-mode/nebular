@@ -1,10 +1,9 @@
 #name: nebular
 # --
-(do
-(defonce bass-g (group "bass"))
-(defonce nebular-note-buf (buffer 96))
-(def nebular (growl [:head bass-g] :amp 0 :beat-trg-bus (:beat time/beat-16th) :beat-bus (:count time/beat-16th) :note-buf nebular-note-buf)))
+(do (defonce bass-g (group "bass")) (defonce nebular-note-buf (buffer 96))
+(def nebular (growl [:head bass-g] :amp 0 :beat-trg-bus (:beat time/beat-16th) :beat-bus (:count time/beat-16th) :note-buf nebular-note-buf))
 
 (fadein nebular)
 
 (pattern-at! nebular-note-buf time/main-beat 32 (degrees [$0] :major :A2))
+)
