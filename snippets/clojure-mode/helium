@@ -1,0 +1,7 @@
+#name: helium
+# --
+
+(do (defonce helium-dur-buf (buffer 96)) (defonce helium-note-buf (buffer 96))
+(pattern! helium-dur-buf    (repeat 16 [1/9]) (repeat 4 (repeat 16 [1/8])))
+
+(def helium (shrill-pong [:head voice-g] :amp 1.2 :note-buf helium-note-buf :duration-bus helium-dur-buf)))

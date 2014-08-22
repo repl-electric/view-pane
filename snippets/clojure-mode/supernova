@@ -1,0 +1,10 @@
+#name: hydrogen
+# --
+
+(do
+
+(def supernova (shrill-pong [:head voice-g] :amp 0.1 :note-buf supernova-note-buf :duration-bus supernova-dur-buf))
+
+(n-overtime! supernova :amp 0.1 1.2 0.01)
+ 
+(pattern! supernova-dur-buf (repeat 4 (repeat 2 [1/2 1/4 1/2 1/2 1/4 1/2 1/2 1/12])) (repeat 4 [1/2 1/2 1/2 1/2])))
