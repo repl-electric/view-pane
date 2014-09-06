@@ -4,3 +4,4 @@
                               $0))
 
 (remove-on-beat-trigger)
+(remove-all-beat-triggers)
