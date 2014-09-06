@@ -23,18 +23,17 @@
 (defun zone-fall-through-ws-re (c col wend)
   (let ((fall-p nil)                    ; todo: move outward
         (o (point))                     ; for terminals w/o cursor hiding
-        (p (point)))
-    (while (progn
-             (forward-line 1)
-             (move-to-column col)
-             (looking-at " "))
+        (p (point))
+        (insert-char " ")
+        (halt-char " "))
+    (while (progn (forward-line 1) (move-to-column col) (looking-at halt-char))
       (setq fall-p t)
       (delete-char 1)
       (insert (if (< (point) wend) c " "))
       (save-excursion
         (goto-char p)
         (delete-char 1)
-        (insert " ")
+        (insert insert-char)
         (goto-char o)
         (sit-for 0))
       (setq p (- (point) 1)))
