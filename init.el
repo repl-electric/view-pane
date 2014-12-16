@@ -32,7 +32,7 @@
       (insert (if (< (point) wend) c " "))
       (save-excursion
         (goto-char p)
-        (delete-char 1)
+        (delete-char 2)
         (insert insert-char)
         (goto-char o)
         (sit-for 0))
