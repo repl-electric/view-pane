@@ -116,9 +116,106 @@
           (delete-char -1)
           (insert "_"))))))
 
+
+(defun zone-circle-animate (c col wend)
+  (let ((fall-p nil)                    ; todo: move outward
+        (o (point))                     ; for terminals w/o cursor hiding
+        (p (point))
+        (insert-char " ")
+        (halt-char " ")
+        (counter 0))
+
+    (while (< counter 10)
+      (let ((next-char     (char-after p))
+            (previous-char (char-after (- p 1))))
+
+        ;;(progn (forward-line 1) (move-to-column col) (looking-at halt-char))
+        ;;          (when (< counter 50)    (move-to-column (mod counter 150)))
+
+        (when (= counter 4) (move-to-column counter) )
+        (setq counter (+ 1 counter))
+        (setq fall-p t)
+        ;;(delete-char 1)
+        (insert (if (< (point) wend) "" (if (> (random 100) 99) "\n" "")))
+
+        (if (and (not (looking-at "("))
+                 (not (looking-at ")")))
+            (progn
+
+              (save-excursion
+                (goto-char p)
+                (set-cursor-color "green")
+
+                (when (= 0 (mod counter 4))
+                  (when (< (random 100) 5) (insert "()"))
+                  (when (< (random 100) 5) (insert "(    )"))
+
+                  (let ((j (random counter)))
+                    (dotimes (_ (random counter)) (insert insert-char))
+                    ;;(delete-char j)
+                    ))
+                ;;(goto-char o)
+
+                ;;            (goto-char p)
+                ;;            (delete-char (mod counter 2))
+                ;;            (insert next-char)
+                ;;            (goto-char o)
+                ;;            (goto-char p)
+                ;;            (delete-char 1)
+                ;;            (insert previous-char)
+                ;;            (goto-char (- p 1))
+                ;;            (delete-char 1)
+                ;;            (insert next-char)
+
+                (sit-for 0))
+              (if (<= 5 (mod counter 10))
+                  (setq p (- (point) 1))
+                (setq p (+ (point) 1))
+                ))
+
+          ))
+      )
+    fall-p))
+
+(defun zone-circles ()
+  (set 'truncate-lines nil)
+  (let* ((ww (1- (window-width)))
+         (wh (window-height))
+         (mc 0)                         ; miss count
+         (total (* ww wh))
+         (fall-p nil)
+         (wend 100)
+         (wbeg 1))
+    (goto-char (point-min))
+    (while (not (eobp))
+      (end-of-line)
+      (let ((cc (current-column)))
+        (if (< cc ww)
+            (insert (make-string (- ww cc) ? ))
+        ;;    (delete-char (- ww cc))
+          ))
+      (unless (eobp) (forward-char 1)))
+
+    (catch 'done; ugh
+      (while (not (input-pending-p))
+        (goto-char (point-min))
+        (let ((wbeg (window-start))
+              (wend (window-end)))
+          (setq mc 0)
+
+          (goto-char wbeg)
+          (while (looking-at "[ \n\f]")
+            (goto-char (+ wbeg (random (- wend wbeg)))))
+          ;; character animation sequence
+          (let ((p (point)))
+            (goto-char p)
+            (zone-circle-animate (zone-cpos p) (current-column) wend)))
+        ;; assuming current-column has not changed...
+        ))))
+
 (eval-after-load "zone"
-  '(unless (memq 'zone-pgm-repl-electric (append zone-programs nil))
-     (setq zone-programs [zone-pgm-repl-electric])))
+  '(unless (memq 'zone-circles (append zone-programs nil))
+     (setq zone-programs [zone-circles])))
 
 (defun zone-pgm-md5 ()
   "MD5 the buffer, then recursively checksum each hash."
