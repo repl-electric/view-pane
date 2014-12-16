@@ -120,6 +120,7 @@
           (delete-char -1)
           (insert "_"))))))
 
+(defvar total-count 0)
 
 (defun zone-circle-animate (c col wend)
   (let ((fall-p nil)                    ; todo: move outward
@@ -136,27 +137,26 @@
         ;;(progn (forward-line 1) (move-to-column col) (looking-at halt-char))
         ;;          (when (< counter 50)    (move-to-column (mod counter 150)))
 
-        (when (= counter 4) (move-to-column counter) )
+        ;;(when (< total-count 1000)  (move-to-column counter))
+
         (setq counter (+ 1 counter))
-        (setq fall-p t)
+        (setq total-count (+ 1 total-count))
         ;;(delete-char 1)
-        (insert (if (< (point) wend) "" (if (> (random 100) 99) "\n" "")))
+        ;;(insert (if (< (point) wend) "" (if (> (random 100) 90) "\n" "")))
 
         (if (and (not (looking-at "("))
                  (not (looking-at ")")))
             (progn
-
               (save-excursion
                 (goto-char p)
-                (set-cursor-color "green")
-
                 (when (= 0 (mod counter 4))
-                  (when (< (random 100) 5) (insert "()"))
-                  (when (< (random 100) 5) (insert "(    )"))
+                  (when (< (random 100) 1) (insert "()"))
+                  (when (< (random 100) 1) (insert "(  )"))
+                  (when (< (random 100) 1) (insert "(    )"))
 
                   (let ((j (random counter)))
                     (dotimes (_ (random counter)) (insert insert-char))
-                    ;;(delete-char j)
+                    (delete-char j)
                     ))
                 ;;(goto-char o)
 
@@ -183,6 +183,7 @@
 
 (defun zone-circles ()
   (set 'truncate-lines nil)
+  (setq total-count 0)
   (let* ((ww (1- (window-width)))
          (wh (window-height))
          (mc 0)                         ; miss count
