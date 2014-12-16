@@ -1,5 +1,9 @@
 (live-load-config-file "bindings.el")
 
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 (load "~/.live-packs/josephwilk-pack/electric.el")
 
 (color-theme-electric)
