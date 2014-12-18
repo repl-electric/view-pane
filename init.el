@@ -137,39 +137,29 @@
         ;;(progn (forward-line 1) (move-to-column col) (looking-at halt-char))
         ;;          (when (< counter 50)    (move-to-column (mod counter 150)))
 
-        ;;(when (< total-count 1000)  (move-to-column counter))
+        (when (< (random 100) 50)  (move-to-column counter))
 
         (setq counter (+ 1 counter))
         (setq total-count (+ 1 total-count))
-        ;;(delete-char 1)
-        ;;(insert (if (< (point) wend) "" (if (> (random 100) 90) "\n" "")))
 
-        (if (and (not (looking-at "("))
-                 (not (looking-at ")")))
+        (when (< (random 100) 80)  (insert (if (< (point) wend)  "." "\n")))
+
+        (if (and (not (looking-at ")"))
+                 (not (looking-at "(")))
             (progn
               (save-excursion
-                (goto-char p)
+                (when (= 0 (mod counter 1)) (dotimes (_ (random counter)) (insert insert-char)))
                 (when (= 0 (mod counter 4))
-                  (when (< (random 100) 1) (insert "()"))
+                  (when (< (random 100) 2) (insert "()"))
                   (when (< (random 100) 1) (insert "(  )"))
+                  (when (< (random 100) 1) (insert "(   )"))
                   (when (< (random 100) 1) (insert "(    )"))
 
-                  (let ((j (random counter)))
-                    (dotimes (_ (random counter)) (insert insert-char))
-                    (delete-char j)
-                    ))
+                  ;;(goto-char (+ p 1))
+                  (delete-char (random counter))
+                  )
                 ;;(goto-char o)
 
-                ;;            (goto-char p)
-                ;;            (delete-char (mod counter 2))
-                ;;            (insert next-char)
-                ;;            (goto-char o)
-                ;;            (goto-char p)
-                ;;            (delete-char 1)
-                ;;            (insert previous-char)
-                ;;            (goto-char (- p 1))
-                ;;            (delete-char 1)
-                ;;            (insert next-char)
 
                 (sit-for 0))
               (if (<= 5 (mod counter 10))
@@ -209,8 +199,7 @@
           (setq mc 0)
 
           (goto-char (+ wbeg (random (- wend wbeg))))
-          (while (looking-at "[ \n\f]")
-            (goto-char (+ wbeg (random (- wend wbeg)))))
+          (while (looking-at "[\t\n ]") (goto-char (+ wbeg (random (- wend wbeg)))))
           ;; character animation sequence
           (let ((p (point)))
             (goto-char p)
