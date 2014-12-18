@@ -208,7 +208,7 @@
               (wend (window-end)))
           (setq mc 0)
 
-          (goto-char wbeg)
+          (goto-char (+ wbeg (random (- wend wbeg))))
           (while (looking-at "[ \n\f]")
             (goto-char (+ wbeg (random (- wend wbeg)))))
           ;; character animation sequence

@@ -1,0 +1,3 @@
+#name: dirt
+# --
+(on-beat-trigger ${1:beat} #(echoey-buf (dirt $0) :amp 0.1))
