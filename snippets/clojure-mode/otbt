@@ -1,0 +1,3 @@
+#name: otbt
+# --
+(one-time-beat-trigger $1 128 (fn [& _] $0))

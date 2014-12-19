@@ -1,0 +1,5 @@
+#name: hand-drums
+# --
+(do (defonce effects-seq-buf (buffer 256)) (defonce drum-effects-g (group "drum-effects-group")))
+(pattern! effects-seq-buf  (repeat 12 1)  [1 0 0 0])
+(def hand-drums (efficient-seqer [:head drum-effects-g] :pattern effects-seq-buf :amp 0.25 :num-steps 16 :buf hand-drum-s :rate-start 0.9 :rate-limit 1.0))
