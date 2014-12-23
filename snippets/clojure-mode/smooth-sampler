@@ -2,7 +2,7 @@
 # --
 (do (def voices 8) (def durations [1/8 1/4 1/2 1]) (def pattern-size 8)
     (def perc-samples [rf-full-s rf-full-s rf-theorems-s rf-fx-s rf-theorems-s rf-theorems-s rf-full-s rf-full-s])
-    (def smooth-samples [rf-fx-s rf-solve-s rf-theorems-s rf-full-s rf-solve-s rf-fx-s rf-full-s rf-solve-s]))
+    (def smooth-samples [rf-fx-s rf-solve-s rf-theorems-s rf-full-s rf-solve-s rf-fx-s rf-full-s rf-solve-s])) $1
 
 (kill buf->perc-inst)
 (kill buf->smooth-inst)

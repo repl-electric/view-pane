@@ -1,7 +1,7 @@
 #name: onb
 # --
 (on-beat-trigger ${1:beat} #(do
-                              $0))
-
+  $0
+))
 (remove-on-beat-trigger)
 (remove-all-beat-triggers)

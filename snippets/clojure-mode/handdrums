@@ -1,4 +1,4 @@
-#name: hand-drums
+#name: handdrums
 # --
 (do (defonce effects-seq-buf (buffer 256)) (defonce drum-effects-g (group "drum-effects-group")))
 (pattern! effects-seq-buf  (repeat 12 1)  [1 0 0 0])

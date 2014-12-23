@@ -1,0 +1,4 @@
+#name: onbs
+# --
+(on-beat-trigger ${1:beat} #(swap! $2 + $3))
+(remove-all-beat-triggers)
