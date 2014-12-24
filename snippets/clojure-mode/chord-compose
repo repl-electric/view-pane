@@ -1,0 +1,8 @@
+#name: chord-compose
+# --
+(chord-pattern! ${1:synth}
+  (let [_ [0 0 0 0]
+       [f21 f22 f23 f24 f25 f26 f27]                 (chords-for :F2 :minor 3)
+       [fi21 fi22 fi23 fi24 fi25 fi26 fi27]          (chords-with-inversion [1] :F2 :minor :up 3)
+       [fii21 fii22 fii23 fii24 fii25 fii26 fii27]   (chords-with-inversion [1 2] :F2 :minor :up 3)]
+    (concat ${2:score})))

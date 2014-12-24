@@ -1,0 +1,3 @@
+#name: chd
+# --
+(chord ${1:key} ${2:type} ${3:degree})$0
