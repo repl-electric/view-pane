@@ -1,17 +1,9 @@
 #name: whitehat
 # --
-(do
-(defonce drums-g (group "drums"))
-(defonce white-seq-buf (buffer 128))
-(def white (doall (map
-                   #(whitenoise-hat
-                     [:head drums-g]
-                     :amp 0.2
-                     :seq-buf  white-seq-buf
-                     :beat-bus     (:count time/beat-1th)
-                     :beat-trg-bus (:beat time/beat-1th)
-                     :num-steps 24
-                     :beat-num %1) (range 0 24)))))
+(do (defonce drums-g (group "drums")) (defonce drum-effects-g (group "drums effects for extra sweetness")) (defbufs 128 [hats-buf white-seq-buf]) (defonce hats-amp (buffer 256))
+(def white (whitenoise-hat [:head drums-g] :amp-buf hats-amp :seq-buf hats-buf :beat-bus (:count time/beat-1th) :beat-trg-bus (:beat time/beat-1th) :num-steps 16 :release 0.1 :attack 0.0 :beat-num 0)) (ctl white :amp-buf hats-amp))
+$0
+(ctl white :attack 0.04 :release 0.01 :amp 1)
+(ctl white :attack 0.002 :release 0.04 :amp 1.5)
 
-(pattern! white-seq-buf [1 0 ])
-(pattern! white-seq-buf (repeat 3 [1 0 0 0]) [1 1 1 1])
+(pattern! hats-buf [0 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0])
