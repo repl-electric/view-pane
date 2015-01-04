@@ -1,0 +1,14 @@
+#name: ctl-all-flatiron
+# --
+(let [cutoff ${0}2600]
+(kill buf->perc-inst)
+(kill buf->smooth-inst)
+(remove-all-beat-triggers)
+(ctl drums-g :amp 0)
+(ctl drum-effects-g :amp 0)
+(ctl apeg-deep-melody-spair-chord-g  :saw-cutoff cutoff)
+(ctl apeg-deep-melody-spair2-chord-g :saw-cutoff cutoff)
+(ctl apeg-deep-melody-chord-g        :saw-cutoff cutoff)
+(ctl main-melody-chord-g             :saw-cutoff cutoff)
+(ctl main-melody2-chord-g            :saw-cutoff cutoff)
+(ctl slow-deep-chord-g               :saw-cutoff cutoff))
