@@ -1,0 +1,11 @@
+#name: flt-bright
+# --
+(do
+  (def main-melody2-chord-g (chord-synth general-purpose-assembly 3 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :attack 0.1 :release 0.1))
+  (chord-pattern main-melody2-chord-g apeg-swell)
+
+  (reset! color 0.5)
+  (chord-pattern main-melody2-chord-g  darker-pinger-score)
+  (ctl main-melody2-chord-g :amp 0.18 :saw-cutoff 1000)
+  (ctl main-melody-chord-g :saw-cutoff 300 :amp 0.18)
+  (chord-pattern main-melody-chord-g apeg-swell))$0

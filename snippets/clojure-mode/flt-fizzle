@@ -1,0 +1,3 @@
+#name: flt-fizzle
+# --
+(doall (map #(n-overtime! % :saw-cutoff 2600.0 0 50) (:synths nomad-chord-g)))$0

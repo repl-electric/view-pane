@@ -1,0 +1,14 @@
+#name: flt-ctl-all
+# --
+(let [cutoff ${0}2600]
+  (kill buf->perc-inst)
+  (kill buf->smooth-inst)
+  (remove-all-beat-triggers)
+  (ctl drums-g          :amp 0)
+  (ctl drum-effects-g   :amp 0)
+  (ctl westvil-chord-g  :saw-cutoff cutoff)
+  (ctl nolita-chord-g   :saw-cutoff cutoff)
+  (ctl nomad-chord-g    :saw-cutoff cutoff)
+  (ctl noho-chord-g     :saw-cutoff cutoff)
+  (ctl brooklyn-chord-g :saw-cutoff cutoff)
+  (ctl flatiron-chord-g :saw-cutoff cutoff))

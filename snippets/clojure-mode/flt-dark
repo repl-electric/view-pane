@@ -1,0 +1,26 @@
+#name: flt-dark
+# --
+(do
+  (plain-space-organ :tone (/ (midi->hz (note :F1)) 2) :duration 3 :amp 0.45)
+  (ctl nomad-chord-g :amp 0.00)
+  (ctl drum-effects-g :amp 0.0)
+  (ctl drums-g :amp 0.0)
+
+  (chord-pattern flatiron-chord-g dark-chords-score )
+  (chord-pattern nomad-chord-g darker-pinger-score)
+
+   (def main-melody-chord-g (chord-synth general-purpose-assembly 3 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :wave 1 :attack 1.0 :release 5.0))
+   (chord-pattern! main-melody-chord-g apeg-swell)
+
+   (doseq [s (:synths nomad-chord-g)]
+     (ctl s :amp 0.00 :saw-cutoff 100 :wave 0 :attack 1.0 :release 5.0)
+     (n-overtime! s :saw-cutoff 100 2000 50)
+     (n-overtime! s :amp 0.00 0.24 0.03))
+   (when beat-tap (remove-watch beat-tap :cell-color)))$0
+   
+(ctl main-melody-chord-g :amp 0.6 :saw-cutoff)
+(ctl nomad-chord-g :amp 0.228 :saw-cutoff  :wave 1)
+(pattern! kick-seq-buf [1 0 0 0 1 0 0 0])
+(ctl kicker :amp 0)
+(ctl white :amp 0)
+   
