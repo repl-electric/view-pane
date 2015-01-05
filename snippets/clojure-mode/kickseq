@@ -1,0 +1,4 @@
+#name: kickseq
+# --
+(pattern! kick-seq-buf (repeat 3 [0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0])
+                                 [0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0])

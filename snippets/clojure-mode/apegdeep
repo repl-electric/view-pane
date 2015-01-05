@@ -1,6 +1,0 @@
-#name: apegdeep
-# --
-(do(def apeg-deep-melody-chord-g (chord-synth general-purpose-assembly 4 :amp 0.00 :saw-cutoff 2000 :wave 0 :attack 1.0 :release 5.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-1th) :beat-bus (:count time/beat-1th)))(def apeg-start (first (:bufs apeg-deep-melody-chord-g))))$1
-
-(ctl apeg-deep-melody-chord-g :amp 0.1)
-(pattern! apeg-start (degrees-seq [${0}]))
