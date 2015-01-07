@@ -1,5 +1,10 @@
 #name: flatiron
 # --
-(do(defonce sd-g (group "sd group"))(def flatiron-chord-g (chord-synth general-purpose-assembly-pi 4 [:head sd-g] :saw-cutoff 300 :amp 0.0 :attack 0.1 :noise-level 0.05 :release 1.0 :wave 4 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :attack 0.3 :release 6.0 :noise-level 0.05 :amp-buf sd-amp-b :release-buf sd-release-b :attack-buf sd-attack-b)))$1
+(do(defonce sd-g (group "sd group"))(defbufs 256 [df-b sd-attack-b sd-release-b sd-amp-b s-note-b])(def flatiron-chord-g (chord-synth general-purpose-assembly-pi 4 [:head sd-g] :saw-cutoff 300 :amp 0.0 :attack 0.1 :noise-level 0.05 :release 1.0 :wave 4 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :attack 0.3 :release 6.0 :noise-level 0.05 :amp-buf sd-amp-b :release-buf sd-release-b :attack-buf sd-attack-b))(pattern! sd-attack-b [0.06 0.12 0.12 0.12])(pattern! sd-release-b [1.0  1.0 1.0 1.0])(pattern! sd-amp-b [1.2  1.0 1.0 1.0]))$1
+
+(pattern! sd-attack-b  [])
+(pattern! sd-release-b [])
+(pattern! sd-amp-b     [])
+
 (ctl flatiron-chord-g :amp 0.1)
-(chord-pattern! flatiron-chord-g (chords-seq "$0[]"))
+(chord-pattern! flatiron-chord-g (chords-seq "[]"))

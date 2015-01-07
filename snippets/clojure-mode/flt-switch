@@ -1,8 +1,8 @@
 #name: flt-switch
 # --
 (do
-  (ctl apeg-deep-melody-spair-chord-g :amp 0)
-  (ctl-time apeg-deep-melody-spair-chord-g time/beat-2th)
+  (ctl westvil-chord-g :amp 0)
+  (ctl-time westvil-chord-g time/beat-2th)
   (ctl-time nomad-chord-g time/beat-2th)
   (ctl-time flatiron-chord-g time/beat-1th)
 
