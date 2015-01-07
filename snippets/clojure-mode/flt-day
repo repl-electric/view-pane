@@ -1,17 +1,15 @@
-#name: flt-light
+#name: flt-day
 # --
 (do
   (overtime! circle-slice (* 0.5 Math/PI))(reset! cells-weight 4.0)
   (def westvil-chord-g (chord-synth general-purpose-assembly 4 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-1th) :beat-bus (:count time/beat-1th) :attack 0.1 :release 0.1))
-  (chord-pattern! westvil-chord-g pinger-score-spair)
+  (chord-pattern westvil-chord-g pinger-growth-score-spair)
 
   (ctl noho-chord-g :amp 0.0)
   (ctl westvil-chord-g :amp 0.00 :saw-cutoff 2000 :wave 2 :attack 1.0 :release 5.0)
   (n-overtime! westvil-chord-g :amp 0 0.24 0.06)
 
-  (chord-pattern westvil-chord-g pinger-growth-score-spair)
   (ctl drum-effects-g :amp 0.3) (ctl drums-g :amp 1.0)
-
   (pattern! effects-seq-buf  (repeat 12 [1 0])  [1 0 0 0])
   (ctl nomad-chord-g :amp 0.3 :saw-cutoff 2600 :wave 0 :attack 1.0 :release 5.0)
   (def f (dulcet-fizzle :amp 2.0 :note-buf df-b)))$0
