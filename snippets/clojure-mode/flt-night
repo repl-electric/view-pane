@@ -1,20 +1,21 @@
 #name: flt-night
 # --
-(do
-  (plain-space-organ :tone (/ (midi->hz (note :F1)) 2) :duration 3 :amp 0.45)
-  (doseq [loud-thing [nomad-chord-g drum-effects-g drums-g]] (ctl loud-thing :amp 0.0))
+(one-time-beat-trigger
+ 126 128
+ (fn []
+   (doseq [loud-thing [nomad-chord-g drum-effects-g drums-g]] (ctl loud-thing :amp 0.0))
 
-  (def noho-chord-g (chord-synth general-purpose-assembly 3 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :wave 1 :attack 1.0 :release 5.0))
+   (def noho-chord-g (chord-synth general-purpose-assembly 3 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :wave 1 :attack 1.0 :release 5.0))
 
-  (chord-pattern noho-chord-g apeg-swell)
-  (chord-pattern nomad-chord-g darker-pinger-score)
-  (chord-pattern flatiron-chord-g (chords-seq "[]"))
+   (chord-pattern noho-chord-g apeg-swell)
+   (chord-pattern nomad-chord-g darker-pinger-score)
+   (chord-pattern flatiron-chord-g (chords-seq "[$0]"))
 
-  (doseq [s (:synths nomad-chord-g)]
-    (ctl s :amp 0.00 :saw-cutoff 100 :wave 0 :attack 1.0 :release 5.0)
-    (n-overtime! s :saw-cutoff 100 2000 50)
-    (n-overtime! s :amp 0.00 0.24 0.03))
-  (when beat-tap (remove-watch beat-tap :cell-color)))
+   (doseq [s (:synths nomad-chord-g)]
+     (ctl s :amp 0.00 :saw-cutoff 100 :wave 0 :attack 1.0 :release 5.0)
+     (n-overtime! s :saw-cutoff 100 2000 50)
+     (n-overtime! s :amp 0.00 0.24 0.03))
+   (when beat-tap (remove-watch beat-tap :cell-color))))
 
 (ctl noho-chord-g  :amp 0.6   :saw-cutoff)
 (ctl nomad-chord-g :amp 0.228 :saw-cutoff  :wave 1)

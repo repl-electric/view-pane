@@ -7,4 +7,4 @@
 (pattern! sd-amp-b     [])
 
 (ctl flatiron-chord-g :amp 0.1)
-(chord-pattern! flatiron-chord-g (chords-seq "[]"))
+(chord-pattern! flatiron-chord-g (chords-seq "$0[]*"))
