@@ -1,7 +1,7 @@
 #name: flt-brook
 # --
 (do
-  (reset! color 0.5)
+  (when color (overtime! color 0.5))
   (def brooklyn-chord-g (chord-synth general-purpose-assembly 3 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :attack 0.1 :release 0.1))
   (chord-pattern brooklyn-chord-g darker-pinger-score)
 
