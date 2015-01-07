@@ -1,4 +1,4 @@
 #name: onbr
 # --
-(on-beat-trigger ${1:beat} #(reset! $2))
+(on-beat-trigger ${1:beat} #(reset! $0))
 (remove-all-beat-triggers)
