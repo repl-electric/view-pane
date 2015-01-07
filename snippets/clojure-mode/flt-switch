@@ -1,4 +1,4 @@
-#name: flt-swope
+#name: flt-switch
 # --
 (do
   (ctl apeg-deep-melody-spair-chord-g :amp 0)
