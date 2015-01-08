@@ -6,5 +6,5 @@
 (pattern! sd-release-b [])
 (pattern! sd-amp-b     [])
 
-(ctl flatiron-chord-g :amp 0.1)
-(chord-pattern! flatiron-chord-g (chords-seq "$0[]*"))
+(ctl flatiron-chord-g :amp 0.09 :wave 6)
+(chord-pattern! flatiron-chord-g (chords-seq "$0"))

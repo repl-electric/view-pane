@@ -19,6 +19,8 @@
       (ctl-time westvil-chord-g time/beat-1th)
       (ctl-time flatiron-chord-g time/beat-2th)
 
+      (reset! cells-weight 5.0)
+
       (ctl noho-chord-g :amp 0.18)
       (ctl nolita-chord-g :amp 0.18)
       (chord-pattern noho-chord-g pinger-score-spair)
