@@ -1,6 +1,6 @@
 #name: flt-ctl-all
 # --
-(let [cutoff {$0}2600]
+(let [cutoff ${}2600]
   (kill buf->perc-inst)
   (kill buf->smooth-inst)
   (remove-all-beat-triggers)
