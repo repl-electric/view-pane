@@ -5,10 +5,9 @@
   (ctl-time westvil-chord-g time/beat-2th)
   (ctl-time nomad-chord-g time/beat-2th)
   (ctl-time flatiron-chord-g time/beat-1th)
+  (pattern! sd-attack-b  [0.06 0.12 0.12 0.1])
+  (pattern! sd-release-b [1.0 0.6 0.4 0.2])
+  (pattern! sd-amp-b     [1.2 0.9 0.9 0.8])
 
-  (chord-pattern flatiron-chord-g pinger-score)
-
-  (let [_ (pattern! sd-attack-b  [0.06 0.12 0.12 0.1])
-        _ (pattern! sd-release-b [1.0 0.6 0.4 0.2])
-        _ (pattern! sd-amp-b     [1.2 0.9 0.9 0.8])]
-    (chord-pattern nomad-chord-g chords-score)))$0
+  (chord-pattern flatiron-chord-g )
+  (chord-pattern nomad-chord-g    ))
