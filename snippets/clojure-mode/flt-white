@@ -11,7 +11,6 @@
 
      (def white (whitenoise-hat [:head drums-g] :amp-buf hats-amp :seq-buf hats-buf :beat-bus (:count time/beat-1th) :beat-trg-bus (:beat time/beat-1th) :num-steps 16 :release 0.1 :attack 0.0 :beat-num 0))
      (ctl white :amp-buf hats-amp)
-     (ctl white :attack 0.04 :release 0.01 :amp 1)
      (ctl white :attack 0.002 :release 0.04 :amp 2)
      (ctl kicker :amp 1.0)
      )))$0
