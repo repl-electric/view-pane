@@ -1,0 +1,6 @@
+#name: flt-bright
+# --
+(do
+  (when color (overtime! color 0.5))
+  (ctl noho-chord-g :saw-cutoff 300 :amp 0.18)
+  (chord-pattern noho-chord-g apeg-swell))$0
