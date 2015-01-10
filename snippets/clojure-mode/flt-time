@@ -1,4 +1,4 @@
-#name: flt-switch
+#name: flt-time
 # --
 (do
   (ctl westvil-chord-g :amp 0)
@@ -9,5 +9,5 @@
   (pattern! sd-release-b [1.0 0.6 0.4 0.2])
   (pattern! sd-amp-b     [1.2 0.9 0.9 0.8])
 
-  (chord-pattern flatiron-chord-g )
-  (chord-pattern nomad-chord-g    ))
+  (chord-pattern flatiron-chord-g $1)
+  (chord-pattern nomad-chord-g    $2))$0
