@@ -1,7 +1,6 @@
 #name: onb
+#type: command
 # --
-(on-beat-trigger ${1:beat} #(do
-  $0
-))
-(remove-on-beat-trigger)
-(remove-all-beat-triggers)
+(let ((uid (downcase (symbol-name (gensym)))))
+  (yas/expand-snippet (concat "(def trigger-" uid "\n" "   (on-beat-trigger $1 #(do\n $0\n)))\n\n(remove-beat-trigger trigger-" uid ")\n" "(remove-all-beat-triggers)\n"))
+)

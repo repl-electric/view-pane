@@ -12,4 +12,6 @@
   (ctl drum-effects-g :amp 0.3) (ctl drums-g :amp 1.0)
   (pattern! effects-seq-buf  (repeat 12 [1 0])  [1 0 0 0])
   (ctl nomad-chord-g :amp 0.3 :saw-cutoff 2600 :wave 0 :attack 1.0 :release 5.0)
+  (defonce df-b (buffer 256))
+  (pattern! df-b [(degrees [1 1 1 1] :minor :F3) (degrees [1 1 1 1] :minor :F3) (degrees [1 1 1 1] :minor :F3) (degrees [1 1 1 1] :minor :F4)])
   (def f (dulcet-fizzle :amp 2.0 :note-buf df-b)))$0

@@ -1,4 +1,6 @@
 #name: dirt
 # --
-(on-beat-trigger ${1:beat} #(echoey-buf (dirt $0) :amp 0.1))
+(def ${2:$(substring yas-text 1)}-t
+  (on-beat-trigger $1 #(echoey-buf (dirt ${2:sample}) :amp 0.1)))$0
+(remove-beat-trigger ${2:$(substring yas-text 1)}-t)
 (remove-all-beat-triggers)

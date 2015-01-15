@@ -1,10 +1,11 @@
 #name: flt-night
 # --
-(one-time-beat-trigger
- 126 128
- (fn []
-   (doseq [loud-thing [nomad-chord-g drum-effects-g drums-g]] (ctl loud-thing :amp 0.0))
+(do (n-overtime! nomad-chord-g :amp 0.1 0.0)
+    (dotimes [_ 2] (plain-space-organ :tone (/ (midi->hz (note :F0)) 2) :duration 8 :amp 0.25)))
 
+(do
+   (doseq [loud-thing [nomad-chord-g drum-effects-g drums-g]] (ctl loud-thing :amp 0.0))
+   (fragmented-kick-s :amp 0.3)
    (def noho-chord-g (chord-synth general-purpose-assembly 3 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :wave 1 :attack 1.0 :release 5.0))
 
    (chord-pattern noho-chord-g apeg-swell)
@@ -15,7 +16,7 @@
      (ctl s :amp 0.00 :saw-cutoff 100 :wave 0 :attack 1.0 :release 5.0)
      (n-overtime! s :saw-cutoff 100 2000 50)
      (n-overtime! s :amp 0.00 0.24 0.03))
-   (when beat-tap (remove-watch beat-tap :cell-color))))
+   (when beat-tap (remove-watch beat-tap :cell-color)))
 
 (ctl noho-chord-g  :amp 0.6   :saw-cutoff)
 (ctl nomad-chord-g :amp 0.228 :saw-cutoff  :wave 1)

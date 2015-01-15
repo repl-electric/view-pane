@@ -1,4 +1,6 @@
 #name: onbs
 # --
-(on-beat-trigger ${1:beat} #(swap! $2 + $0))
+(def $2-t
+  (on-beat-trigger ${1:beat} #(swap! ${2:atom} + $0)))
+(remove-beat-trigger $2-t)
 (remove-all-beat-triggers)
