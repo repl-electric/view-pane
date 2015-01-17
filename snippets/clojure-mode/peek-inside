@@ -6,7 +6,7 @@
    (map
     (fn [thing-like]
       (cond
-       (some #{thing-like} (degrees [$1] :minor :f4)) (degrees [$0] :minor :f3)
+       (some #{thing-like} (degrees-seq [$1])) (degrees-seq [$0])
        :else
        [thing-like]))
     (map int (buffer-data (first (:bufs nomad-chord-g)))))))
