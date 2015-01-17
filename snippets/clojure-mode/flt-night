@@ -1,7 +1,7 @@
 #name: flt-night
 # --
 (do (n-overtime! nomad-chord-g :amp 0.1 0.0)
-    (dotimes [_ 2] (plain-space-organ :tone (/ (midi->hz (note :F0)) 2) :duration 8 :amp 0.25)))
+    (dotimes [_ 1] (plain-space-organ :tone (/ (midi->hz (note :F0)) 2) :duration 8 :amp 0.25)))
 
 (do
    (doseq [loud-thing [nomad-chord-g drum-effects-g drums-g]] (ctl loud-thing :amp 0.0))
