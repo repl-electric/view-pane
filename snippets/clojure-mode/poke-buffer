@@ -1,4 +1,4 @@
-#name: peek-inside
+#name: poke-buffer
 # --
 (do ;;Lets mess with running buffer
   (chord-pattern!
@@ -9,4 +9,6 @@
        (some #{thing-like} (degrees-seq [$1])) (degrees-seq [$0])
        :else
        [thing-like]))
-    (map int (buffer-data (first (:bufs nomad-chord-g)))))))
+    (map int (buffer-data (first (:bufs nomad-chord-g))))))
+  ;;(swap! buffer-change-event-nomad inc)
+  )
