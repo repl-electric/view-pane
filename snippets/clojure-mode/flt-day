@@ -10,7 +10,7 @@
   (ctl westvil-chord-g :amp 0.00 :saw-cutoff 2000 :wave 2 :attack 1.0 :release 5.0)
   (n-overtime! westvil-chord-g :amp 0 0.24 0.06)
 
-  (ctl drum-effects-g :amp 0.3) (ctl drums-g :amp 1.0)
+  (ctl drum-effects-g :amp 0.0) (ctl drums-g :amp 1.0)
   (ctl nomad-chord-g :amp 0.3 :saw-cutoff 2600 :wave 0 :attack 1.0 :release 5.0)
   (defonce df-b (buffer 256))
   (pattern! df-b [(degrees [1 1 1 1] :minor :F3) (degrees [1 1 1 1] :minor :F3) (degrees [1 1 1 1] :minor :F3) (degrees [1 1 1 1] :minor :F4)])
