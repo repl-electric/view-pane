@@ -1,6 +1,6 @@
 #name: poke-buffer
 # --
-(do ;;Lets mess with running buffer
+(do ;;Lets mess with live running buffer
   (chord-pattern!
    nomad-chord-g
    (map
@@ -10,5 +10,4 @@
        :else
        [thing-like]))
     (map int (buffer-data (first (:bufs nomad-chord-g))))))
-  ;;(swap! buffer-change-event-nomad inc)
-  )
+    (swap! buffer-change-event-nomad inc))

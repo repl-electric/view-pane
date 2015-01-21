@@ -2,5 +2,5 @@
 # --
 (do(def nomad-chord-g (chord-synth general-purpose-assembly 4 :amp 0.00 :saw-cutoff 2000 :wave 0 :attack 1.0 :release 5.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-1th) :beat-bus (:count time/beat-1th))))$1
 
-(ctl nomad-chord-g :amp 0.1 :wave 6)
+(ctl nomad-chord-g :amp 0.1 :wave 6)$2
 (chord-pattern! nomad-chord-g (def score-nomad (flatcat (repeat 1 (degrees-seq [$0])))))

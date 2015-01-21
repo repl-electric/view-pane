@@ -1,6 +1,7 @@
 #name: flt-time
 # --
 (do
+  (when dulcet-fizzle (kill dulcet-fizzle))
   (ctl westvil-chord-g :amp 0)
   (ctl-time westvil-chord-g time/beat-2th)
   (ctl-time nomad-chord-g time/beat-2th)

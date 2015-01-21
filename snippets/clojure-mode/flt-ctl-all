@@ -3,6 +3,7 @@
 (let [cutoff ${}2600]
   (kill buf->perc-inst)
   (kill buf->smooth-inst)
+  (kill dulcet-fizzle)
   (remove-all-beat-triggers)
   (ctl drums-g          :amp 0)
   (ctl drum-effects-g   :amp 0)
