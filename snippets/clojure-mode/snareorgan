@@ -1,6 +1,9 @@
 #name: snareorgan
 # --
-(do
-  (defonce effects2-seq-buf (buffer 256)) (defonce effects-seq-buf (buffer 256)) (pattern! effects-seq-buf [1 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0] [1 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0] [1 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0] [1 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0]) (pattern! effects2-seq-buf [0 0 0 0  0 0 0 0  1 0 0 0  0 0 0 0] [0 0 0 0  0 0 0 0  1 0 0 0  0 0 0 0] [0 0 0 0  0 0 0 0  1 0 0 0  0 0 0 0] [0 0 0 0  0 0 1 0  1 1 0 0  1 0 1 0])
-  (def snare-organ-seq1 (efficient-seqer :buf snare-organ-s :pattern effects-seq-buf :rate-start 1.0 :rate-limit 1.0 :amp 0.05))
-  (def snare-organ-seq2 (efficient-seqer :buf snare-organ-s :pattern effects2-seq-buf :rate-start 0.95 :rate-limit 0.95 :amp 0.02)))$0
+(do(defonce drum-effects-g (group "drum effects"))(def snare-sample tom-electro-s)(defonce effects2-seq-buf (buffer 256))(defonce effects-seq-buf (buffer 256))
+  (pattern! effects-seq-buf  (repeat 28 [1 0 0 0]) [1 0 0 0 0 0 0 0])
+  (pattern! effects2-seq-buf (repeat 28 [0 0 1 1]) [0 0 0 0 1 0 0 0])
+  (def snare-organ-seq1 (efficient-seqer [:head drum-effects-g] :buf snare-sample :pattern effects-seq-buf :rate-start 1.0 :rate-limit 1.0 :amp 0.03))
+  (def snare-organ-seq2 (efficient-seqer [:head drum-effects-g] :buf snare-sample :pattern effects2-seq-buf :rate-start 0.95 :rate-limit 0.8 :amp 0.02)))$0
+
+(ctl drum-effects-g :amp 0)
