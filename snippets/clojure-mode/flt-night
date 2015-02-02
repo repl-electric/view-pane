@@ -6,7 +6,7 @@
 (do
    (doseq [loud-thing [nomad-chord-g drum-effects-g drums-g]] (ctl loud-thing :amp 0.0))
    (fragmented-kick-s :amp 0.3)
-   (pattern! kicker-seq-buf [0])
+   (pattern! kick-seq-buf [0])
    (def noho-chord-g (chord-synth general-purpose-assembly 3 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-2th) :beat-bus (:count time/beat-2th) :wave 1 :attack 1.0 :release 5.0))
 
    (chord-pattern noho-chord-g apeg-swell)
