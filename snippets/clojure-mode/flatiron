@@ -7,4 +7,4 @@
 (pattern! sd-amp-b     [])
 
 (ctl flatiron-chord-g :amp 0.2 :wave 6)$2
-(chord-pattern! flatiron-chord-g (def score-flat (chords-seq "$0")))
+(chord-pattern! flatiron-chord-g (def score-flat (chords-seq "f2[1b63a]*8 4a*6 sus4b*2 [1b63a]*8 5a*6 7sus4b*2")))

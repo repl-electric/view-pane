@@ -10,5 +10,5 @@
   (pattern! sd-release-b [1.0 0.6 0.4 0.2])
   (pattern! sd-amp-b     [1.2 0.9 0.9 0.8])
 
-  (chord-pattern flatiron-chord-g $1)
-  (chord-pattern nomad-chord-g    $2))$0
+  (chord-pattern flatiron-chord-g score-nomad)
+  (chord-pattern nomad-chord-g    score-flat))$0

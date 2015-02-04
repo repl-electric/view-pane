@@ -11,7 +11,7 @@
 
    (chord-pattern noho-chord-g apeg-swell)
    (chord-pattern nomad-chord-g darker-pinger-score)
-   (chord-pattern flatiron-chord-g (chords-seq "$0[]*1 []*1"))
+   (chord-pattern flatiron-chord-g (chords-seq "f3[134]*16 [6 m+5]*8 [134]*16 [6 m7+5]*8"))
 
    (doseq [s (:synths nomad-chord-g)]
      (ctl s :amp 0.00 :saw-cutoff 100 :wave 0 :attack 1.0 :release 5.0)
