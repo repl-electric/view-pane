@@ -3,5 +3,9 @@
 (do (defonce kick-seq-buf (buffer 256)) (defonce bass-notes-buf (buffer 256)) (defonce drums-g (group "main drums")) (defonce kick-amp (buffer 256))
     (def kicker (space-kick2 [:head drums-g] :note-buf bass-notes-buf :seq-buf kick-seq-buf :num-steps 16 :beat-num 0 :noise 0.05 :amp 0.0 :mod-index 0.1 :mod-freq 4.0 :mode-freq 0.2))(ctl kicker :amp-buf kick-amp)(pattern! kick-amp  [1.5 1 1 1 1 1 1 1   1.1 1 1 1 1 1 1 1] (repeat 2 [1.2 1 1 1 1 1 1 1   1.1 1 1 1 1 1 1 1]) [1.2 1 1 1 1 1 1 1   1.2 1 1 1 1.2 1 1.3 1])(pattern! bass-notes-buf (repeat 8 (degrees [1] :minor :F1))(repeat 2 (repeat 8 (degrees [1] :minor :F1)))(repeat 2 (repeat 8 (degrees [3] :minor :F1)))(repeat 2 (repeat 8 (degrees [3] :minor :F1)))[(degrees [1 1 1 1  5 4 3 1] :minor :F1)]))$1
 
-(pattern! kick-seq-buf [0${} 0 0 0  0 0 0 0  0 0 0 0  0 0 0 0])
+(pattern! kick-seq-buf
+     [${2:h} 0 0 0  0 0 0 0  ${3:k} 0 0 0  0 0 0 0]
+     [$2 0 0 0  0 0 0 0  $3 0 0 0  0 0 0 0]
+     [$2 0 0 0  0 0 0 0  $3 0 0 0  0 0 0 0]
+     [$2 0 0 0  0 0 0 0  $3 0 0 0  0 0 0 0])
 (ctl kicker :attack 0.0 :sustain 0.2 :amp 0.2)
