@@ -1,0 +1,9 @@
+#name: trg-clap
+# --
+(def trigger-clap
+  (sample-trigger 120 128 
+    #(sample-player (sample "/Users/josephwilk/Dropbox/repl-electric/samples/Analog Snares & Claps/13  EMT140 (1).wav") :rate 0.7 :amp 0.2 :start 3000.0)
+))
+(remove-beat-trigger trg-clap)
+(remove-all-beat-triggers)
+(remove-all-sample-triggers)

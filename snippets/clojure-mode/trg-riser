@@ -1,0 +1,8 @@
+#name: trg-riser
+# --
+(def trigger-riser
+  (sample-trigger 104 128 #(play-buf :buf (sample (str "/Users/josephwilk/Workspace/music/samples/soprano/Samples/Ambiences/kriambiences/ahspicious_" (choose ["04" "06" "12"]) ".wav")) :amp 0.9 :start 0.8 :end 0.9 :release 6.)))
+
+(remove-beat-trigger trg-riser)
+(remove-all-beat-triggers)
+(remove-all-sample-triggers)
