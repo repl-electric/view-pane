@@ -1,6 +1,7 @@
 #name: flt-day
 # --
 (do
+  (remove-all-sample-triggers)
   (overtime! circle-slice (* 0.5 Math/PI))(reset! cells-weight 4.0)(reset! circle-intensity 1.0)
   (def westvil-chord-g (chord-synth general-purpose-assembly 4 :amp 0.0 :noise-level 0.05 :beat-trg-bus (:beat time/beat-1th) :beat-bus (:count time/beat-1th) :attack 0.1 :release 0.1))
   (chord-pattern westvil-chord-g pinger-growth-score-spair)
