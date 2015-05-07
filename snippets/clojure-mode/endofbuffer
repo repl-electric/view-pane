@@ -1,0 +1,4 @@
+#name: endofbuffer
+# --
+(one-time-beat-trigger 126 128 (fn [& _]
+ (fl/fadeout-master 3)))$0
