@@ -4,13 +4,17 @@
  15 16
  (fn []
    (do
-     (defonce hats-buf (buffer 256)) (defonce hats-amp (buffer 256))
+     (defonce hats-buf (buffer 256)) (defonce hats-amp (buffer 256)) (defonce hat-verb (buffer 256))
      (pattern! hats-amp (repeat 3 [2 2 2 2 2.1 2 2 2   2 2 2 2 2 2 2 2]) [2 2 2 2 2.1 2 2 2   2 2 2.4 2 2.4 2 2 2])
-     (pattern! hats-buf (repeat 3 [0 0 0 0  1 0 0 0  0 0 1 0  0 0 0 0])
-                                  [0 0 0 0  1 0 0 0  0 0 1 0  1 0 0 0])
-
-     (def white (whitenoise-hat [:head drums-g] :amp-buf hats-amp :seq-buf hats-buf :beat-bus (:count time/beat-1th) :beat-trg-bus (:beat time/beat-1th) :num-steps 16 :release 0.1 :attack 0.0 :beat-num 0))(ctl white :amp-buf hats-amp)
+     (pattern! hats-buf (repeat 3 [0 0 0 0 1 0 0 0   0 0 1 0 0 0 0 0])
+                                  [0 0 0 0 1 0 0 0   0 0 1 0 1 0 0 0])
+     (pattern! hat-verb
+               [0.0 0.0 0.0 0.0  0.3  0 0.0 0  0 0 0.15 0  1.0 0 0 0]
+               [0.0 0.0 0.0 0.0  0.29 0 0.0 0  0 0 0.16 0  1.0 0 0 0]
+               [0.0 0.0 0.0 0.0  0.25 0 0.0 0  0 0 0.17 0  1.0 0 0 0]
+               [0.0 0.0 0.0 0.0  0.2  0 0.0 0  0 0 0.18 0  1.0 0 0 0])
+     (kill whitenoise-hat2)
+     (def white (whitenoise-hat2 [:head drums-g] :amp-buf hats-amp :seq-buf hats-buf :beat-bus (:count time/beat-1th) :beat-trg-bus (:beat time/beat-1th) :num-steps 16 :release 0.1 :attack 0.0 :beat-num 0))(ctl white :amp-buf hats-amp)
 
      (ctl white :attack 0.002 :release 0.04 :amp 1)
-     (when kicker (ctl kicker :amp 0.6))
-     )))$0
+     (when kicker (ctl kicker :amp 0.6)))))$0

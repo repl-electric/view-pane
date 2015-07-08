@@ -1,0 +1,6 @@
+#name: osc-client
+# --
+(def client (osc-client "localhost" 4558))
+(def trigger-g41517 (on-beat-trigger 8 #(do (osc-send client "/beat") )))
+(remove-beat-trigger trigger-g41517)
+(remove-all-beat-triggers)
