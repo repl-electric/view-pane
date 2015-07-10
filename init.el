@@ -286,7 +286,7 @@
           (let ((p (point)))
             (goto-char p)
             (when (<  counter 10000) (zone-stars-animate (zone-cpos p) (current-column) wend))
-            (when (and (> counter 8500) (< counter 10000))
+            (when (and (> counter 4500) (< counter 10000))
               (while (re-search-forward "\\(\s+\\)" nil t 1)
                 (when (< (random 100) 50) (replace-match "\\1 "))))
 
