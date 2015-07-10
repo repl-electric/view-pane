@@ -293,13 +293,8 @@
 
           (let ((p (point)))
             (goto-char p)
-            (when (< counter 2)
-              (while (re-search-forward "\\(\s+\\)" nil t 1)
-                (when (< (random 100) 50)  (replace-match " "))) )
             (when (<  counter 10000) (zone-stars-animate (zone-cpos p) (current-column) wend))
-
-
-            (when (and (> counter 9000) (< counter 10000))
+            (when (and (> counter 8500) (< counter 10000))
               (while (re-search-forward "\\(\s+\\)" nil t 1)
                 (when (< (random 100) 50) (replace-match "\\1 "))))
 
@@ -308,11 +303,11 @@
                                 ;;       (zone-stars-animate (zone-cpos p) (current-column) wend)
                                      ;;(goto-char wbeg)
                                        (insert "\n\n")
-                                       (insert "    (replrepl    o o    e    c sm        o o o  ffff     bbbb   u  u  ffff ffff  eeee  rrrr   \n")
-                                       (insert "    (            v  n   r    o   u       o   o  f        b   b  u  u  f    f     e     r  r   \n")
-                                       (insert "    (electric    e   e  u    d    s      o   o  ffff     b b    u  u  ffff ffff  eee   rr r   \n")
-                                       (insert "    (            r    c j    e   i       o   o  f        b   b  u  u  f    f     e     r r    \n")
-                                       (insert "    (endofthe    t     lo    i ac        ooooo  f        bbbb   uuuu  f    f     eeee  r   r  \n")
+                                       (insert "(orepl  oo    e   csm      l o l  tsound    ibbbb   s  p  code  code  lcode  rrrr   \n")
+                                       (insert "(v      v n   r   o  u     i   e  i         x   b   o  i  t     t     i      r  r   \n")
+                                       (insert "(elec   e  u  d   s   v    e   d  dmusic    i b     n  u  enot  enot  vive   rr r   \n")
+                                       (insert "(r      r   c j   e  i     e   d  a         l   b   i  s  x     x     e      r r    \n")
+                                       (insert "(tone   t    lo   iac      codes  l         angbb   code  t     t     code   r   r  \n")
                                        (insert "\n\n")
 
 
@@ -320,7 +315,7 @@
                                        (setq fall-p (zone-fall-through-ws-re  (zone-cpos p) (current-column) wend))
                                        ))
 
-            (when (> counter  10010) (dotimes (i 100)
+            (when (> counter  11000) (dotimes (i 100)
                                       (goto-char (+ wbeg (random (- wend wbeg))))
                                       (while (looking-at "[\t\n ]") (goto-char (+ wbeg (random (- wend wbeg)))))
                                       (setq fall-p (zone-fall-through-ws-re  (zone-cpos p) (current-column) wend))))
