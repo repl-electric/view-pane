@@ -233,17 +233,15 @@
 
         (if (and (not (looking-at ")"))
                  (not (looking-at "("))
-                 (not (looking-at "\s+")))
+                 (not (looking-at "\s+"))
+                 (not (looking-at "\n+")))
             (progn
               (save-excursion
                 (dotimes (_ (random counter))
-;;                  (delete-char 1)
+                  ;;(delete-char 1)
                   (insert insert-char)
-
                 )
                 ;;(goto-char o)
-
-
                 (sit-for 0))
               (if (<= 5 (mod counter 10))
                   (setq p (- (point) 1))
@@ -262,21 +260,15 @@
          (wbeg 1)
          (counter 0))
     (goto-char (point-min))
-    (while (not (eobp))
-      (end-of-line)
-      (let ((cc (current-column)))
-        (if (< cc ww)
-            (insert (make-string (- ww cc) ? ))
-              (delete-char (- ww cc))
-          ))
-      (unless (eobp) (forward-char 1)))
+
 
     (let ((nl (- wh (count-lines (point-min) (point)))))
       (when (> nl 0)
         (let ((line (concat (make-string (1- ww) ? ) "\n")))
           (do ((i 0 (1+ i)))
               ((= i nl))
-            (insert line)))))
+          ;;  (insert line)
+            ))))
 
     (catch 'done; ugh
       (while (not (input-pending-p))
@@ -298,17 +290,19 @@
               (while (re-search-forward "\\(\s+\\)" nil t 1)
                 (when (< (random 100) 50) (replace-match "\\1 "))))
 
-            (when (and (> counter  10000) (< counter 10010)) (dotimes (i 1)
+            (when (and (= counter  10000)) (dotimes (i 1)
                                        (goto-char (+ wbeg (random (- wend wbeg))))
                                 ;;       (zone-stars-animate (zone-cpos p) (current-column) wend)
                                      ;;(goto-char wbeg)
                                        (insert "\n\n")
-                                       (insert "(orepl  oo    e   csm      l o l  tsound    ibbbb   s  p  code  code  lcode  rrrr   \n")
-                                       (insert "(v      v n   r   o  u     i   e  i         x   b   o  i  t     t     i      r  r   \n")
-                                       (insert "(elec   e  u  d   s   v    e   d  dmusic    i b     n  u  enot  enot  vive   rr r   \n")
-                                       (insert "(r      r   c j   e  i     e   d  a         l   b   i  s  x     x     e      r r    \n")
-                                       (insert "(tone   t    lo   iac      codes  l         angbb   code  t     t     code   r   r  \n")
+                                       (insert "(orepl  oo    e   csm      l o l  tsound    ibbbb   s  m  code  code  lcode  rrrr   \n")
+                                       (insert "(v      v n   r   o  u     i   e  i         x   b   o  u  t     t     i      r  r   \n")
+                                       (insert "(elec   e  u  d   s   v    e   d  dmusic    i b     u  s  enot  enot  vive   rr r   \n")
+                                       (insert "(r      r   c j   e  i     e   d  a         l   b   n  i  x     x     e      r r    \n")
+                                       (insert "(tone   t    lo   iac      codes  l         angbb   dcoc  t     t     code   r   r  \n")
                                        (insert "\n\n")
+
+                                       (sit-for 1)
 
 
                                        (goto-char (+ wbeg (- wend wbeg)))
