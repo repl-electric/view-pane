@@ -237,6 +237,7 @@
             (progn
               (save-excursion
                 (dotimes (_ (random counter))
+;;                  (delete-char 1)
                   (insert insert-char)
 
                 )
@@ -292,7 +293,16 @@
 
           (let ((p (point)))
             (goto-char p)
+            (when (< counter 2)
+              (while (re-search-forward "\\(\s+\\)" nil t 1)
+                (when (< (random 100) 50)  (replace-match " "))) )
             (when (<  counter 10000) (zone-stars-animate (zone-cpos p) (current-column) wend))
+
+
+            (when (and (> counter 9000) (< counter 10000))
+              (while (re-search-forward "\\(\s+\\)" nil t 1)
+                (when (< (random 100) 50) (replace-match "\\1 "))))
+
             (when (and (> counter  10000) (< counter 10010)) (dotimes (i 1)
                                        (goto-char (+ wbeg (random (- wend wbeg))))
                                 ;;       (zone-stars-animate (zone-cpos p) (current-column) wend)
