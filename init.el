@@ -290,7 +290,7 @@
               (while (re-search-forward "\\(\s+\\)" nil t 1)
                 (when (< (random 100) 50) (replace-match "\\1 "))))
 
-            (when (and (= counter  10000)) (dotimes (i 1)
+            (when (and (< counter -100)) (dotimes (i 1)
                                        (goto-char (+ wbeg (random (- wend wbeg))))
                                 ;;       (zone-stars-animate (zone-cpos p) (current-column) wend)
                                      ;;(goto-char wbeg)
