@@ -1,0 +1,6 @@
+#name: drumpat
+# --
+(do
+(pattern! kick-seq-buf [$0])
+(pattern! hats-buf [0])
+)
