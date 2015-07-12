@@ -1,0 +1,22 @@
+#name: eta-end
+# --
+(kill drums-g)
+(kill voice-g)
+(kill backing-voice-g)
+(kill bass-g)
+(ctl drums-g :amp 0)$0
+(ctl drum-effects-g :amp 0)
+(ctl supernova :amp 0)
+(ctl helium :amp 0)
+(ctl hydrogen :amp 0)
+(ctl stellar-wind :amp 0)
+(ctl metallicity :amp 0)
+(ctl nebula :amp 0)
+
+(defn eta-full-stop []
+  (reset! cutout-w 0.0)
+  (reset! stars-w 0.0)
+  (reset! heart-w 0.0)
+  (reset! cellular-w 0.0)
+  (remove-all-beat-triggers)
+  (fadeout-master))
