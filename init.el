@@ -17,6 +17,9 @@
 
 (global-set-key (kbd "C-c C-s") 'zone)
 
+(global-set-key (kbd "C-c p") 'previous-buffer)
+(global-set-key (kbd "C-c n") 'next-buffer)
+
 (when (fboundp 'winner-mode) (winner-mode 0))
 
 (require 'yasnippet)
