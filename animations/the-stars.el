@@ -1,3 +1,5 @@
+;;The stars by Joseph Wilk
+
 (defun zone-fall-through-ws-re (c col wend)
   (let ((fall-p nil)                    ; todo: move outward
         (o (point))                     ; for terminals w/o cursor hiding
@@ -35,7 +37,7 @@
 (defun zone-cpos (pos)
   (buffer-substring pos (+ 1 pos)))
 
-(defun zone-pgm-repl-electric (&optional fret-p pancake-p)
+(defun zone-the-stars (&optional fret-p pancake-p)
   (let* ((ww (1- (window-width)))
          (wh (window-height))
          (mc 0)                         ; miss count
@@ -95,5 +97,5 @@
           (insert "_"))))))
 
 (eval-after-load "zone"
-  '(unless (memq 'zone-pgm-repl-electric (append zone-programs nil))
-     (setq zone-programs [zone-pgm-repl-electric])))
+  '(unless (memq 'zone-the-stars (append zone-programs nil))
+     (setq zone-programs [zone-the-stars])))

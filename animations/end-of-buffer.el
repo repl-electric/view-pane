@@ -1,6 +1,7 @@
+;;End of buffeeeeeeeeeeerrrrrrrrrrrr by Joseph Wilk
 (defvar start-total-count 0)
 
-(defun zone-stars-animate (c col wend)
+(defun zone-end-of-buffer-animate (c col wend)
   (let ((fall-p nil)                    ; todo: move outward
         (o (point))                     ; for terminals w/o cursor hiding
         (p (point))
@@ -37,7 +38,7 @@
                 (setq p (+ (point) 1)))))))
     fall-p))
 
-(defun zone-stars ()
+(defun zone-end-of-buffer ()
   (set 'truncate-lines nil)
   (setq total-count 0)
   (let* ((ww (1- (window-width)))
@@ -74,7 +75,7 @@
 
           (let ((p (point)))
             (goto-char p)
-            (when (<  counter 10000) (zone-stars-animate (zone-cpos p) (current-column) wend))
+            (when (<  counter 10000) (zone-end-of-buffer-animate (zone-cpos p) (current-column) wend))
             (when (and (> counter 4500) (< counter 10000))
               (while (re-search-forward "\\(\s+\\)" nil t 1)
                 (when (< (random 100) 50) (replace-match "\\1 "))))
@@ -108,5 +109,5 @@
 
 
 (eval-after-load "zone"
-  '(unless (memq 'zone-stars (append zone-programs nil))
-     (setq zone-programs [zone-stars])))
+  '(unless (memq 'zone-end-of-buffer (append zone-programs nil))
+     (setq zone-programs [zone-end-of-buffer])))

@@ -1,6 +1,8 @@
+;;Waves by Joseph Wilk
+
 (defvar total-count 0)
 
-(defun zone-circle-animate (c col wend)
+(defun zone-waves-animate (c col wend)
   (let ((fall-p nil)                   
         (o (point))                    
         (p (point))
@@ -50,7 +52,7 @@
     fall-p))
 
 
-(defun zone-circles ()
+(defun zone-waves ()
   (set 'truncate-lines nil)
   (setq total-count 0)
   (let* ((ww (1- (window-width)))
@@ -87,5 +89,5 @@
         ))))
 
 (eval-after-load "zone"
-  '(unless (memq 'zone-circles (append zone-programs nil))
-     (setq zone-programs [zone-circles])))
+  '(unless (memq 'zone-waves(append zone-programs nil))
+     (setq zone-programs [zone-waves])))
