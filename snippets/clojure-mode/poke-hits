@@ -1,6 +1,6 @@
-#name: poke-drums
+#name: poke-hits
 # --
-(pattern! kick-seq [])
+(pattern! kick-seq-buf [])
 (pattern! hats-amp [])
 (pattern! hats-buf [])
 (pattern! hat-verb [])
