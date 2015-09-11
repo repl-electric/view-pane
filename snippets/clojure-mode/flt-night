@@ -21,6 +21,6 @@
 
 (ctl noho-chord-g  :amp 0.6   :saw-cutoff)
 (ctl nomad-chord-g :amp 0.228 :saw-cutoff  :wave 1)
-(pattern! kick-seq-buf [0 0 0 0])
+(pattern! kick-seq-buf (fl/spread))
 (ctl kicker :amp 1)
 (ctl white :amp 1)
