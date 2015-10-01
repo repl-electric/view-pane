@@ -84,10 +84,10 @@
           ;; character animation sequence
           (let ((p (point)))
             (goto-char p)
-            (zone-circle-animate (zone-cpos p) (current-column) wend)))
+            (zone-waves-animate (zone-cpos p) (current-column) wend)))
         ;; assuming current-column has not changed...
         ))))
 
 (eval-after-load "zone"
-  '(unless (memq 'zone-waves(append zone-programs nil))
+  '(unless (memq 'zone-waves (append zone-programs nil))
      (setq zone-programs [zone-waves])))
