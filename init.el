@@ -30,6 +30,10 @@
 (load "~/.live-packs/josephwilk-pack/animations/end-of-buffer.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/the-stars.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/waves.el")
+(defun clojure-set-up-key-bindings ()
+  (define-key cider-mode-map (kbd "M-RET") 'cider-eval-defun-at-point))
+
+(add-hook 'cider-mode-hook 'clojure-set-up-key-bindings)
 
 (defun zone-pgm-md5 ()
   "MD5 the buffer, then recursively checksum each hash."
