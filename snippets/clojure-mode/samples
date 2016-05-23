@@ -10,3 +10,4 @@
 (echoey-buf signals-s)
 (spacy signals-s :amp 2.3)
 (do (defonce rich-s (sample "/Users/josephwilk/Dropbox/repl-electric/samples/emacs_and_sex_full.wav"))(mono-player rich-s :amp 0.8))
+(do (defonce oo-s (sample "/Users/josephwilk/Dropbox/repl-electric/samples/programmers/beauty_and_practical.wav"))(mono-player rich-s :amp 0.8))
