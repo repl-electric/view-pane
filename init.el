@@ -17,6 +17,7 @@
 (global-set-key (kbd "M-f") 'backward-word)
 (global-set-key (kbd "M-b") 'forward-word)
 
+
 (global-set-key (kbd "C-c <left>") 'windmove-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 (global-set-key (kbd "C-c <up>") 'windmove-up)
@@ -37,8 +38,11 @@
 (load "~/.live-packs/josephwilk-pack/animations/end-of-buffer.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/the-stars.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/waves.el")
+;;(load "~/.live-packs/josephwilk-pack/animations/upcase.el")
+
 (defun clojure-set-up-key-bindings ()
-  (define-key cider-mode-map (kbd "M-RET") 'cider-eval-defun-at-point))
+  (define-key cider-mode-map (kbd "M-RET")   'cider-eval-defun-at-point)
+  (define-key cider-mode-map (kbd "C-M-RET") 'cider-eval-region))
 
 (add-hook 'cider-mode-hook 'clojure-set-up-key-bindings)
 
@@ -138,3 +142,13 @@ middle"
    ((equal "left" (win-resize-left-or-right)) (enlarge-window-horizontally 1))
    ((equal "right" (win-resize-left-or-right)) (enlarge-window-horizontally -1))
    ((equal "mid" (win-resize-left-or-right)) (enlarge-window-horizontally 1))))
+
+
+;;Sane Navigation
+(global-set-key (kbd "M-u") 'backward-word)
+(global-set-key (kbd "M-o") 'forward-word)
+(global-set-key (kbd "M-j") 'backward-char)
+(global-set-key (kbd "M-l") 'forward-char)
+(global-set-key (kbd "M-l") 'forward-char)
+(global-set-key (kbd "M-i") 'previous-line)
+(global-set-key (kbd "M-k") 'next-line)
