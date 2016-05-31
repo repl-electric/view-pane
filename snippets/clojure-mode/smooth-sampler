@@ -1,6 +1,11 @@
 #name: smooth-sampler
 # --
 (do (def voices 8) (def durations [1/8 1/4 1/2 1]) (def pattern-size 8)
+    (def footsteps2-s (sample "/Users/josephwilk/Workspace/music/samples/MagicDust/FOOTSTEPS/MD_FOOTSTEPS_002.wav"))
+    (def footsteps1-s (sample "/Users/josephwilk/Workspace/music/samples/MagicDust/FOOTSTEPS/MD_FOOTSTEPS_001.wav"))
+    (def footsteps3-s (sample "/Users/josephwilk/Workspace/music/samples/MagicDust/FOOTSTEPS/MD_FOOTSTEPS_001.wav"))
+    (def new-s (sample "/Users/josephwilk/Workspace/music/samples/CPA_TDDC/CPA_TDDC/TDDC_WAV_LPS/TDDC_WASH_LPS/TDDC_WASH_LPS_90_BPM/TDDC_Wash_10_Kubrik_90_Fm.wav"))
+    (def smooth-samples (take 16 (cycle [footsteps2-s new-s])))
     (def perc-samples [rf-full-s rf-full-s rf-theorems-s rf-fx-s rf-theorems-s rf-theorems-s rf-full-s rf-full-s])
     (def smooth-samples [rf-fx-s rf-solve-s rf-theorems-s rf-full-s rf-solve-s rf-fx-s rf-full-s rf-solve-s]))$1
 
@@ -13,10 +18,11 @@
 (def ss (sample->smooth [] voices pattern-size smooth-samples))
 (pattern! (:duration ss) [])
 
-(pattern! (:amp ss)      [0.18 0.18 0.18 0.18 0.18 0.18 0.18 0.18])
-(pattern! (:fraction ss) [0.82283354 0.45919186 0.54692537 0.0045858636 0.034107555 0.6987561 0.07871687 0.24623081])
-(pattern! (:fraction ss) [0.8845941 0.3484526 0.02742675 0.82377213 0.7945769 0.772626 0.45249504 0.35252455])
-(pattern! (:fraction ss) [0.2470634 0.5662428 0.63178784 0.9357417 0.66654444 0.0969285 0.40005338 0.675227])
+(pattern! (:duration ss) [0 0 0 0  1/12 0 (+ 1/8 0.01) 1/4])
+(pattern! (:duration ss) [1/2 0 0 1/2 0 0 1/12 0])
+(pattern! (:amp ss)      [0.4 0.1])
+(pattern! (:fraction ss) [1.0 -1.0])
+
 
 (def gs (sample->percussive [rf-solve-s rf-full-s rf-theorems-s rf-full-s rf-fx-s] voices pattern-size))
 (def gs (sample->percussive perc-samples voices pattern-size))
