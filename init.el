@@ -10,6 +10,13 @@
 
 (live-use-dev-packs)
 
+
+;;F is left side B is right side. Obey logical positioning
+(global-set-key (kbd "C-f") 'backward-char)
+(global-set-key (kbd "C-b") 'forward-char)
+(global-set-key (kbd "M-f") 'backward-word)
+(global-set-key (kbd "M-b") 'forward-word)
+
 (global-set-key (kbd "C-c <left>") 'windmove-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
 (global-set-key (kbd "C-c <up>") 'windmove-up)
