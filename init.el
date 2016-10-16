@@ -1,14 +1,12 @@
 (live-load-config-file "bindings.el")
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (load "~/.live-packs/josephwilk-pack/electric.el")
 
 (color-theme-electric)
 
-;;Nope.
 ;;(live-use-dev-packs)
 
 
@@ -155,3 +153,4 @@ middle"
 (global-set-key (kbd "M-k") 'next-line)
 
 (global-hl-line-mode -1)
+(setq sonic-pi-path "/Users/josephwilk/Workspace/josephwilk/c++/sonic-pi/app/")
