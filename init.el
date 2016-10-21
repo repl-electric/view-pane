@@ -9,13 +9,11 @@
 
 ;;(live-use-dev-packs)
 
-
 ;;F is left side B is right side. Obey logical positioning
 (global-set-key (kbd "C-f") 'backward-char)
 (global-set-key (kbd "C-b") 'forward-char)
 (global-set-key (kbd "M-f") 'backward-word)
 (global-set-key (kbd "M-b") 'forward-word)
-
 
 (global-set-key (kbd "C-c <left>") 'windmove-left)
 (global-set-key (kbd "C-c <right>") 'windmove-right)
@@ -84,9 +82,6 @@
              '("marmalade" .
                "http://marmalade-repo.org/packages/"))
 (package-initialize)
-(setq load-path (cons "~/tidal/" load-path))
-(require 'tidal)
-(setq tidal-interpreter "/usr/local/bin/ghci")
 
 (defun win-resize-top-or-bot ()
   "Figure out if the current window is on top, bottom or in the
@@ -153,4 +148,20 @@ middle"
 (global-set-key (kbd "M-k") 'next-line)
 
 (global-hl-line-mode -1)
+
+(add-to-list 'load-path "~/Workspace/josephwilk/emacs/sonic-pi.el/")
+(require 'sonic-pi-mode)
 (setq sonic-pi-path "/Users/josephwilk/Workspace/josephwilk/c++/sonic-pi/app/")
+(add-to-list 'ac-modes 'sonic-pi-mode)
+
+(add-to-list 'load-path "~/tidal/")
+(require 'haskell-mode)
+(require 'tidal)
+(setq tidal-interpreter "/usr/local/bin/ghci")
+
+;;cider
+(setq cider-repl-display-help-banner nil)
+
+;;Sane reg-builder
+(require 're-builder)
+(setq reb-re-syntax 'string)
