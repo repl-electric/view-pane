@@ -1,0 +1,6 @@
+#name: ll
+# --
+live_loop :${1:name} do
+  tick
+  $0
+end

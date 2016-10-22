@@ -1,0 +1,5 @@
+#name: echo
+# --
+with_fx(:echo, decay: 0.5, mix: 1.0, phase: 0.25) do |e_fx|
+  $0
+end

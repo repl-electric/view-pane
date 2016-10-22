@@ -1,0 +1,5 @@
+#name: do
+# --
+do
+  $0
+end

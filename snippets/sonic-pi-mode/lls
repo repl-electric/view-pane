@@ -1,0 +1,6 @@
+#name: lls
+# --
+live_loop :${1:name}, sync: :${2:sname} do
+  tick
+  $0
+end

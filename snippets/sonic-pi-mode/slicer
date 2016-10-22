@@ -1,0 +1,5 @@
+#name: slicer
+# --
+with_fx(:slicer, phase: 0.25, probability: 0) do |s_fx|
+  $0
+end

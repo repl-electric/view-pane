@@ -1,0 +1,5 @@
+#name: fx
+# --
+with_fx(:${1:name}) do
+  $0
+end
