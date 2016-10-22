@@ -28,16 +28,23 @@
      (font-lock-constant-face ((t (:foreground "#AF27AF"))))
      (font-lock-doc-string-face ((t (:foreground "#503684"))))
      (font-lock-function-name-face ((t (:foreground "#FEDF0C"))))
-     (font-lock-keyword-face ((t (:foreground "#BE0026"))))
-     (font-lock-preprocessor-face ((t (:foreground "gray57"))))
-     (font-lock-reference-face ((t (:foreground "medium slate blue"))))
-     (font-lock-reference-face ((t (:foreground "gray"))))
+     (font-lock-keyword-face ((t (:foreground " #f92a72"))))
+     (font-lock-preprocessor-face ((t (:foreground "#FFAADD"))))
+     (font-lock-reference-face ((t (:foreground "#FFAADD"))))
      (font-lock-regexp-grouping-backslash ((t (:foreground "#BE0026"))))
      (font-lock-regexp-grouping-construct ((t (:foreground "red"))))
      (font-lock-string-face ((t (:foreground "#FFAADD"))))
-     (font-lock-type-face ((t (:foreground "#D8FA3C"))))
-     (font-lock-variable-name-face ((t (:foreground "#D8FA3C"))))
-     (font-lock-warning-face ((t (:bold t :foreground "pink"))))
+
+     ;;(font-lock-number-face ((t (:foreground "#122FFF"))))
+     (ruby-font-lock-number-face ((t (:foreground "#96CBFE"))))
+     (ruby-font-lock-properties-face  ((t (:foreground "#CF77FF"))))
+
+     (font-lock-type-face  ((t (:foreground "#D8FA1C"))))
+     (font-lock-syntactic-keywords ((t (:foreground "#FFAADD"))))
+     (font-lock-variable-name-face ((t (:foreground "#EEEEBC"))))
+
+     ;;HACKED for SP
+     (font-lock-warning-face ((t (:bold t :foreground "#CF77FF"))))
 
      (gui-element ((t (:background "gray10" :foreground "#96CBFE"))))
      ;;     (region ((t (:foreground "black" :background "#7F073F"))))
@@ -183,10 +190,19 @@
      (term-color-yellow ((t (:background "yellow3" :foreground "yellow3"))))
      (term-underline ((t (:underline t))))
 
+
+     (ruby-string-delimiter-face ((t (:foreground "#5A6340"))))
+     (ruby-regexp-delimiter-face ((t (:foreground "orange"))))
+     (ruby-heredoc-delimiter-face ((t (:foreground "#9B859D"))))
+     (ruby-op-face ((t (:foreground "#CDA869"))))
+
      (git-commit-comment-heading-face ((t (:background "black" :foreground "deep pink"))))
      (git-commit-summary-face ((t (:background "black" :foreground "white"))))
      (git-commit-branch-face ((t (:background "black" :foreground "#FF6400"))))
      (git-commit-nonempty-second-line-face ((t (:background "black" :foreground "#FBDE2D"))))
+
+
+
 
      (sp-wrap-overlay-face ((t (:background "green"))))
      (sp-pair-overlay-face ((t (:background "grey20"))))
