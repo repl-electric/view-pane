@@ -154,7 +154,7 @@ middle"
 (setq sonic-pi-path "/Users/josephwilk/Workspace/josephwilk/c++/sonic-pi/app/")
 (add-to-list 'ac-modes 'sonic-pi-mode)
 
-(add-to-list 'load-path "~/tidal/")
+(add-to-list 'load-path "~/Workspace/repl-eletric/tidal/")
 (require 'haskell-mode)
 (require 'tidal)
 (setq tidal-interpreter "/usr/local/bin/ghci")
