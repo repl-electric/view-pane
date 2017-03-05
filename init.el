@@ -149,18 +149,22 @@ middle"
 
 (global-hl-line-mode -1)
 
-(add-to-list 'load-path "~/Workspace/josephwilk/emacs/sonic-pi.el/")
+(add-to-list 'load-path "/Users/josephwilk/Workspace/josephwilk/emacs/sonic-pi.el/")
 (require 'sonic-pi-mode)
+(require 'sonic-pi)
+
 (setq sonic-pi-path "/Users/josephwilk/Workspace/josephwilk/c++/sonic-pi/app/")
 (add-to-list 'ac-modes 'sonic-pi-mode)
 
-(add-to-list 'load-path "~/Workspace/repl-eletric/tidal/")
-(require 'haskell-mode)
-(require 'tidal)
-(setq tidal-interpreter "/usr/local/bin/ghci")
+;;(add-to-list 'load-path "~/Workspace/repl-eletric/tidal/")
+;;(require 'haskell-mode)
+;;(require 'tidal)
+;;(setq tidal-interpreter "/usr/local/bin/ghci")
 
 ;;cider
 (setq cider-repl-display-help-banner nil)
+(setq cider-repl-display-in-current-window t)
+(setq cider-auto-select-error-buffer nil)
 
 ;;Sane reg-builder
 (require 're-builder)
