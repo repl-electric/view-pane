@@ -1,0 +1,5 @@
+#name: gpa
+# --
+synth :gpa, note:  knit( :Fs4,64,  :Cs5,64,
+                           :b4,64,   :fs4,64/2.0, :a4, 64/2.0
+                            ).look, amp: 0.0, attack: 0.001, decay: fslice[:length], release: 0.001

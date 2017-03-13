@@ -32,7 +32,8 @@
   '("~/.live-packs/josephwilk-pack/snippets")))
 (yas-reload-all)
 
-(load "~/.live-packs/josephwilk-pack/animations/end-of-buffer.el")
+(load "~/.live-packs/josephwilk-pack/animations/algo.el")
+;;(load "~/.live-packs/josephwilk-pack/animations/end-of-buffer.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/the-stars.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/waves.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/upcase.el")
@@ -169,3 +170,14 @@ middle"
 ;;Sane reg-builder
 (require 're-builder)
 (setq reb-re-syntax 'string)
+
+(require 'unicode-fonts)
+(unicode-fonts-setup)
+
+
+(setq-default show-trailing-whitespace nil)
+(setq-default mode-require-final-newline nil)
+
+(require 'emojify)
+(setq emojify-set-emoji-styles 'unicode)
+(setq emojify-display-style    'unicode)

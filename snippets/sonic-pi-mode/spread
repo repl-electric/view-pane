@@ -1,5 +1,0 @@
-#name: spread
-# --
-if spread(1,${1:pat}, rotate: 0).look
-  $0
-end

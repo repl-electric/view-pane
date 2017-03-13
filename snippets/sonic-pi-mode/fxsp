@@ -1,0 +1,5 @@
+#name: fxsp
+# --
+with_fx(spread(${1:in}, ${2:over}).map{|s| s ? ${3:hit} : ${4:miss}}.look) do
+  $0
+end

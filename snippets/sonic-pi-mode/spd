@@ -1,0 +1,5 @@
+#name: spd
+# --
+if spread($1).look
+  $0
+end

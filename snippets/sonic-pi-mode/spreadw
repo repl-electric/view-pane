@@ -1,0 +1,3 @@
+#name: spreadw
+# --
+$0 = spread(7,11).map{|s| s ? :hit : :miss}

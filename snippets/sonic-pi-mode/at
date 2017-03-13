@@ -1,0 +1,8 @@
+#name: at
+# --
+if spread(1,64).look
+  at do
+    sleep 1/8.0*2
+    $0
+  end
+end
