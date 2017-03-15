@@ -1,5 +1,5 @@
 #name: spd
 # --
-if spread($1).look
+if spread(1,${1:pat}).look
   $0
 end

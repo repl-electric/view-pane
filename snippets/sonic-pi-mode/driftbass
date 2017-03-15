@@ -1,0 +1,6 @@
+# name: driftbass
+# --
+humming = knit(_,3, Corrupt[/One Shots/, /hum/,$0],1).tick(:bass_thump)
+drifting(0.0, 1/16.0, 8) do
+  smp humming, amp: 1*2.5, finish: 0.01+rand(0.01)
+end

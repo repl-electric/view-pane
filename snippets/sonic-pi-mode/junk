@@ -1,0 +1,7 @@
+# name: junk
+# --
+if spread($1).look
+  with_fx :bitcrusher, bits: 16 do
+    smp Junk[/perc_hit/,/_click_/].take($2).tick(:sn), amp: 0.2, rpitch: 0
+  end
+end

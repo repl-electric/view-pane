@@ -1,0 +1,11 @@
+# name: livevis
+# --
+shader :shader, "wave.glsl", "rope.vert"
+@points ||= 0
+MAX_POINTS = 100000
+live_loop :graphics, sync: :algo do
+  sleep 1
+  shader "vertex-settings", "points", [MAX_POINTS,@points].min
+  @points += 100
+  $0
+end
