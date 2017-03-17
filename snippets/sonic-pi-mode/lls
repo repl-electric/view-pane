@@ -1,6 +1,6 @@
 #name: lls
 # --
-live_loop :${1:name}, sync: algo do
+live_loop :${1:name}, sync: :algo do
   with_fx :none, mix: 0 do
     tick
     $0

@@ -3,7 +3,7 @@
 live_loop :${1:name} do
   with_fx :none, mix: 0 do
     tick
-    forever = (knit 1/8.0, 32, 0, 0).look
+    forever = (knit $0, 32, 0, 0).look
     $0
     sleep forever
   end

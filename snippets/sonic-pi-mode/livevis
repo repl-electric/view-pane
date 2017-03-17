@@ -4,8 +4,27 @@ shader :shader, "wave.glsl", "rope.vert"
 @points ||= 0
 MAX_POINTS = 100000
 live_loop :graphics, sync: :algo do
-  sleep 1
+  # @r ||= `t search all "#algofive"`.split("\n")
+  shader :shader, "wave.glsl", "rope.vert", "points", 100000
   shader "vertex-settings", "points", [MAX_POINTS,@points].min
+  x= <<-EOS
+             /\\
+            /  \\
+           / /\\ \\
+          / /  \\ \\
+         / / /\\ \\ \\
+        / / /  \\ \\ \\
+       / / / /\\ \\ \\ \\
+      / / / /  \\ \\ \\ \\
+     / / / / /\\ \\ \\ \\ \\
+    / / / / ------ \\ \\ \\
+   / / / ------------ \\ \\
+  / / ------------------ \\
+ / ------------------------
+----------------------------
+EOS
+  # shader "echo", ["#Algo".shuffle + "\n" + "five".shuffle + "\n", "#wearefive"].choose, 10
+  shader "echo", x.split("\n").shuffle.join("\n"), 0,1450,0
+  sleep 1
   @points += 100
-  $0
 end
