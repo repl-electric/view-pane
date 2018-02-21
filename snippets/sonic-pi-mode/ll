@@ -1,10 +1,7 @@
 #name: ll
 # --
-live_loop :${1:name} do
-  with_fx :none, mix: 0 do
-    tick
-    forever = (knit ${1:and_a_day}, 32, 0, 0).look
-    $0
-    sleep forever
-  end
+live_loop :${1:name}, sync: :metro do
+  tick
+  $0
+  sleep 3
 end
