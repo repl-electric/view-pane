@@ -7,7 +7,25 @@
 
 (color-theme-electric)
 
-;;(live-use-dev-packs)
+(defun move-region (start end n)
+  "Move the current region up or down by N lines."
+  (interactive "r\np")
+  (let ((line-text (delete-and-extract-region start end)))
+    (forward-line n)
+    (let ((start (point)))
+      (insert line-text)
+      (setq deactivate-mark nil)
+      (set-mark start))))
+
+(defun move-region-up (start end n)
+  "Move the current line up by N lines."
+  (interactive "r\np")
+  (move-region start end (if (null n) -1 (- n))))
+
+(defun move-region-down (start end n)
+  "Move the current line down by N lines."
+  (interactive "r\np")
+  (move-region start end (if (null n) 1 n)))
 
 ;;F is left side B is right side. Obey logical positioning
 (global-set-key (kbd "C-f") 'backward-char)
@@ -15,10 +33,6 @@
 (global-set-key (kbd "M-f") 'backward-word)
 (global-set-key (kbd "M-b") 'forward-word)
 
-(global-set-key (kbd "C-c <left>") 'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>") 'windmove-up)
-(global-set-key (kbd "C-c <down>") 'windmove-down)
 
 (global-set-key (kbd "C-c C-s") 'zone)
 
@@ -32,8 +46,8 @@
   '("~/.live-packs/josephwilk-pack/snippets")))
 (yas-reload-all)
 
-(load "~/.live-packs/josephwilk-pack/animations/algo.el")
-;;(load "~/.live-packs/josephwilk-pack/animations/end-of-buffer.el")
+;;(load "~/.live-packs/josephwilk-pack/animations/algo.el")
+(load "~/.live-packs/josephwilk-pack/animations/end-of-buffer.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/the-stars.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/waves.el")
 ;;(load "~/.live-packs/josephwilk-pack/animations/upcase.el")
@@ -288,7 +302,6 @@ middle"
 
 (require 'unicode-fonts)
 (unicode-fonts-setup)
-
 
 (setq-default show-trailing-whitespace nil)
 (setq-default mode-require-final-newline nil)
