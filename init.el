@@ -144,7 +144,6 @@ middle"
 (global-set-key (kbd "M-o") 'forward-word)
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-l") 'forward-char)
-(global-set-key (kbd "M-l") 'forward-char)
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-k") 'next-line)
 
