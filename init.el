@@ -315,6 +315,10 @@ middle"
 (define-key function-key-map "\e[1;9C" [M-right])
 (define-key function-key-map "\e[1;9D" [M-left])
 
+(define-key function-key-map "\e[1;10A" [M-shift-up])
+(define-key function-key-map "\e[1;10B" [M-shift-down])
+
+
 ;;(global-set-key [M-up] 'move-region-up)
 ;;(global-set-key [M-down] 'move-region-down)
 
