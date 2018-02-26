@@ -360,30 +360,30 @@ middle"
    (t (osc-send-message rk-osc-client (format "/%s" param-name) num))
    ))
 
-(defun code->pots ()
-  (interactive)
+(defun code->pots (beg end)
+  (interactive "r")
   (save-excursion
-    (let ((start (region-beginning))
-          (end   (region-end)))
-      (let ((inhibit-read-only t))
-        (remove-text-properties start end '(read-only t))
-        (goto-char (region-end))
-        (while (re-search-backward "_cc .+:\s*\\([0-9]*.[0-9]+\\)\s*\n" start t)
-          (let ((full     (round (* MAX-LENGTH (string-to-number (match-string 1))))))
-            (let ((empty  (- MAX-LENGTH full)))
-              (goto-char (match-beginning 0))
-              (end-of-line)
-              (let ((start-pnt (point))
-                    (pad (if (>= empty 0)
-                             (make-string empty ?╌)
-                           "")))
-                (insert (concat " #╟"
-                                (make-string full ?▓)
-                                "▒░"
-                                pad
-                                "╢"))
-                (put-text-property start-pnt (point) 'read-only t)))))
-        (align-regexp start end  "\\(\\s-*\\)#")))))
+    (let ((inhibit-read-only t))
+      (remove-text-properties beg end '(read-only t))
+      (goto-char end)
+      (setq i 0)
+      (while (re-search-backward "_cc .+:\s*\\([0-9]*.[0-9]+\\)\s*\n" beg t)
+        (setq i (+ 1 i))
+        (let ((full     (round (* MAX-LENGTH (string-to-number (match-string 1))))))
+          (let ((empty  (- MAX-LENGTH full)))
+            (goto-char (match-beginning 0))
+            (end-of-line)
+            (let ((start-pnt (point))
+                  (pad (if (>= empty 0)
+                           (make-string empty ?╌)
+                         "")))
+              (insert (concat " #╟"
+                              (make-string full ?▓)
+                              "▒░"
+                              pad
+                              "╢"))
+              (put-text-property start-pnt (point) 'read-only t)))))
+      (align-regexp beg (+ (* i 106) end) "\\(\\s-*\\)#"))))
 
 (defun pots-update (new-number old-number)
   (interactive)
@@ -422,12 +422,9 @@ middle"
   (let* ((bounds (bounds-of-thing-at-point 'float))
          (number (buffer-substring (car bounds) (cdr bounds)))
          (point (point)))
-
     (goto-char (car bounds))
     (re-search-backward " \\([a-z]+\\): " nil t)
     (goto-char (car bounds))
-    ;;(insert (format "[%s]" (match-string 1)))
-
     (delete-char (length number))
     (insert (format "%.2f" (funcall func (string-to-number number) (match-string 1))))
     (goto-char point)))
