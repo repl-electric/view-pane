@@ -324,31 +324,46 @@ middle"
 
 (defconst MAX-LENGTH 100)
 
-(defun vst-update-all ()
+(require 'osc)
+(require 'cl-lib)
+
+(defvar re-osc-client nil "Connection to send msgs to sonic pi")
+(defun osc-make-client (host port)
+  (make-network-process
+   :name "OSC client"
+   :host host
+   :service port
+   :type 'datagram
+   :family 'ipv4))
+
+(defun re-osc-connect ()
+  (if re-osc-client   (delete-process re-osc-client))
+  (setq re-osc-client (osc-make-client "localhost" 10000)))
+
+(defun code->pots ()
   (interactive)
   (save-excursion
-    (goto-char (point-min))
-    (let ((start (point)))
+    (let ((start (region-beginning))
+          (end   (region-end)))
       (let ((inhibit-read-only t))
-        (remove-text-properties (point) (point-max) '(read-only t))
-
-      (while (re-search-forward "_cc .+:\s*\\([0-9]*.[0-9]+\\)\s*\n" nil t)
-        (let ((full     (round (* MAX-LENGTH (string-to-number (match-string 1))))))
-          (let ((empty  (- MAX-LENGTH full)))
-            (goto-char (match-beginning 0))
-            (end-of-line)
-            (let ((start-pnt (point))
-                  (pad (if (>= empty 0)
-                           (make-string empty ?╌)
-                         "")))
-              (insert (concat " #╟"
-                              (make-string full ?▓)
-                              "▒░"
-                              pad
-                              "╢"))
-              (put-text-property start-pnt (point) 'read-only t)))))
-      ;;(align-regexp (point-min) (point-max) "\\(\\s-*\\)#")
-      ))))
+        (remove-text-properties start end '(read-only t))
+        (goto-char (region-end))
+        (while (re-search-backward "_cc .+:\s*\\([0-9]*.[0-9]+\\)\s*\n" start t)
+          (let ((full     (round (* MAX-LENGTH (string-to-number (match-string 1))))))
+            (let ((empty  (- MAX-LENGTH full)))
+              (goto-char (match-beginning 0))
+              (end-of-line)
+              (let ((start-pnt (point))
+                    (pad (if (>= empty 0)
+                             (make-string empty ?╌)
+                           "")))
+                (insert (concat " #╟"
+                                (make-string full ?▓)
+                                "▒░"
+                                pad
+                                "╢"))
+                (put-text-property start-pnt (point) 'read-only t)))))
+        (align-regexp start end  "\\(\\s-*\\)#")))))
 
 (defun vst-update (new-number old-number)
   (interactive)
@@ -359,23 +374,25 @@ middle"
               (movement (- full old-full))
               (bmovement (- old-full full)))
           (save-excursion
-            (re-search-forward "#╟" nil t)
-            (goto-char (match-end 0))
-            (let ((inhibit-read-only t)
-                  (start-pnt (point)))
-              (if (> new-number old-number)
-                  (progn ;;forwards
-                    (forward-char old-full)
-                    (insert (make-string movement ?▓))
+            (when (re-search-forward "#╟" (line-end-position) t)
+              (goto-char (match-end 0))
+              (let ((inhibit-read-only t)
+                    (start-pnt (point)))
+                (if (> new-number old-number)
+                    (progn ;;forwards
+                      (forward-char old-full)
+                      (insert (make-string movement ?▓))
+                      (forward-char 2)
+                      (delete-char movement)
+                      )
+                  (progn ;;backwards
+                    (forward-char (- old-full bmovement))
+                    (delete-char bmovement)
                     (forward-char 2)
-                    (delete-char movement)
-                    )
-                (progn ;;backwards
-                  (forward-char (- old-full bmovement))
-                  (delete-char bmovement)
-                  (forward-char 2)
-                  (insert (make-string bmovement ?╌))))
-              (put-text-property start-pnt (point) 'read-only t)))))))
+                    (insert (make-string bmovement ?╌))))
+                (put-text-property start-pnt (point) 'read-only t))))))))
+
+
 
 (require 'thingatpt)
 (put 'float 'end-op       (lambda () (re-search-forward "[0-9-]*\.[0-9-]*" nil t)))
@@ -403,20 +420,22 @@ middle"
                               (vst-update new-number number)
                               new-number))))
 
-(defun inc-float-at-point2 ()
+(defun inc-float-at-point-big ()
   (interactive)
   (change-number-at-point (lambda (number)
                             (let ((new-number (min 1.00 (+ number 0.1))))
                               (vst-update new-number number)
                               new-number))))
-(defun dec-float-at-point2 ()
+(defun dec-float-at-point-big ()
   (interactive)
   (change-number-at-point (lambda (number)
-                            (let ((new-number (max 0.00 (- number 0.1))))
+                            (let ((new-number (max 0.00 (- number 0.1)))
+                                  (param-name "param1"))
+                              (osc-send-message osc-client (format "/%s" param-name) new-number)
                               (vst-update new-number number)
                               new-number))))
 
-(global-set-key [(meta up)]   'inc-float-at-point)
-(global-set-key [(meta down)] 'dec-float-at-point)
-(global-set-key [M-shift-up ]   'inc-float-at-point2)
-(global-set-key [M-shift-down] 'dec-float-at-point2)
+(global-set-key [(meta up)]    'inc-float-at-point)
+(global-set-key [(meta down)]  'dec-float-at-point)
+(global-set-key [M-shift-up ]  'inc-float-at-point-big)
+(global-set-key [M-shift-down] 'dec-float-at-point-big)
