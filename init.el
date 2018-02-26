@@ -357,6 +357,9 @@ middle"
    ((string-match param-name "wet")   (osc-send-message re-osc-client "/IAC Bus 1/control_change" 9 101 (round (* 127.0 num))))
    ((string-match param-name "more")  (osc-send-message re-osc-client "/IAC Bus 1/control_change" 9 102 (round (* 127.0 num))))
    ((string-match param-name "noise") (osc-send-message re-osc-client "/IAC Bus 1/control_change" 9 103 (round (* 127.0 num))))
+   ((string-match param-name "lo") (osc-send-message re-osc-client "/IAC Bus 1/control_change" 1 7 (round (* 127.0 num))))
+   ((string-match param-name "mi") (osc-send-message re-osc-client "/IAC Bus 1/control_change" 1 8 (round (* 127.0 num))))
+   ((string-match param-name "hi") (osc-send-message re-osc-client "/IAC Bus 1/control_change" 1 9 (round (* 127.0 num))))
    (t (osc-send-message rk-osc-client (format "/%s" param-name) num))
    ))
 
