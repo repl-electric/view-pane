@@ -327,7 +327,9 @@ middle"
 (require 'osc)
 (require 'cl-lib)
 
-(defvar re-osc-client nil "Connection to send msgs to sonic pi")
+(defvar re-osc-client nil "Connection to send OSC->Midi")
+(defvar rk-osc-client nil "Connection to send Midi->Reaktor")
+
 (defun osc-make-client (host port)
   (make-network-process
    :name "OSC client"
@@ -338,7 +340,25 @@ middle"
 
 (defun re-osc-connect ()
   (if re-osc-client   (delete-process re-osc-client))
-  (setq re-osc-client (osc-make-client "localhost" 10000)))
+  (setq re-osc-client (osc-make-client "localhost" 4561)))
+
+(defun rk-osc-connect ()
+  (if rk-osc-client   (delete-process rk-osc-client))
+  (setq rk-osc-client (osc-make-client "localhost" 10000)))
+
+(defun vst-connect ()
+  (interactive)
+  (re-osc-connect)
+  (rk-osc-connect))
+
+(defun push-msg (param-name num)
+  (cond
+   ((string-match param-name "pulse") (osc-send-message re-osc-client "/IAC Bus 1/control_change" 9 100 (round (* 127.0 num))))
+   ((string-match param-name "wet")   (osc-send-message re-osc-client "/IAC Bus 1/control_change" 9 101 (round (* 127.0 num))))
+   ((string-match param-name "more")  (osc-send-message re-osc-client "/IAC Bus 1/control_change" 9 102 (round (* 127.0 num))))
+   ((string-match param-name "noise") (osc-send-message re-osc-client "/IAC Bus 1/control_change" 9 103 (round (* 127.0 num))))
+   (t (osc-send-message rk-osc-client (format "/%s" param-name) num))
+   ))
 
 (defun code->pots ()
   (interactive)
@@ -365,7 +385,7 @@ middle"
                 (put-text-property start-pnt (point) 'read-only t)))))
         (align-regexp start end  "\\(\\s-*\\)#")))))
 
-(defun vst-update (new-number old-number)
+(defun pots-update (new-number old-number)
   (interactive)
   (if (not (= new-number old-number))
       (let ((old-full (round (* 100.0 old-number)))
@@ -402,37 +422,45 @@ middle"
   (let* ((bounds (bounds-of-thing-at-point 'float))
          (number (buffer-substring (car bounds) (cdr bounds)))
          (point (point)))
+
     (goto-char (car bounds))
+    (re-search-backward " \\([a-z]+\\): " nil t)
+    (goto-char (car bounds))
+    ;;(insert (format "[%s]" (match-string 1)))
+
     (delete-char (length number))
-    (insert (format "%.2f" (funcall func (string-to-number number))))
+    (insert (format "%.2f" (funcall func (string-to-number number) (match-string 1))))
     (goto-char point)))
 
 (defun inc-float-at-point ()
   (interactive)
-  (change-number-at-point (lambda (number)
+  (change-number-at-point (lambda (number param-name)
                             (let ((new-number (min 1.00 (+ number 0.01))))
-                              (vst-update new-number number)
+                              (pots-update new-number number)
+                              (push-msg param-name new-number)
                               new-number))))
+
 (defun dec-float-at-point ()
   (interactive)
-  (change-number-at-point (lambda (number)
+  (change-number-at-point (lambda (number param-name)
                             (let ((new-number (max 0.00 (- number 0.01))))
-                              (vst-update new-number number)
+                              (pots-update new-number number)
+                              (push-msg param-name new-number)
                               new-number))))
 
 (defun inc-float-at-point-big ()
   (interactive)
-  (change-number-at-point (lambda (number)
+  (change-number-at-point (lambda (number param-name)
                             (let ((new-number (min 1.00 (+ number 0.1))))
-                              (vst-update new-number number)
+                              (pots-update new-number number)
+                              (push-msg param-name new-number)
                               new-number))))
 (defun dec-float-at-point-big ()
   (interactive)
-  (change-number-at-point (lambda (number)
-                            (let ((new-number (max 0.00 (- number 0.1)))
-                                  (param-name "param1"))
-                              (osc-send-message osc-client (format "/%s" param-name) new-number)
-                              (vst-update new-number number)
+  (change-number-at-point (lambda (number param-name)
+                            (let ((new-number (max 0.00 (- number 0.1))))
+                              (pots-update new-number number)
+                              (push-msg param-name new-number)
                               new-number))))
 
 (global-set-key [(meta up)]    'inc-float-at-point)
