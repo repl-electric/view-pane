@@ -468,3 +468,30 @@ middle"
 (global-set-key [(meta down)]  'dec-float-at-point)
 (global-set-key [M-shift-up ]  'inc-float-at-point-big)
 (global-set-key [M-shift-down] 'dec-float-at-point-big)
+
+
+(defun re-no-block  (BEG END)
+  (interactive "r")
+  (save-excursion
+    (goto-char BEG)
+    (if (re-search-forward "yes{" END t 1)
+        (progn
+          (delete-char -4)
+          (insert "no{"))
+      (progn
+        (insert "no{\n")
+        (goto-char (+ END 4))
+        (insert "}")))))
+
+(defun re-yes-block (BEG END)
+  (interactive "r")
+    (save-excursion
+      (goto-char BEG)
+      (if (re-search-forward "no{" END t 1)
+          (progn
+            (delete-char -3)
+            (insert "yes{"))
+          (progn
+            (insert "yes{\n")
+            (goto-char (+ END 4))
+            (insert "}")))))
