@@ -364,6 +364,9 @@ middle"
        ((string-match param-name "eq/lo")         (osc-send-message re-osc-client host 1 7 vel))
        ((string-match param-name "eq/mi")         (osc-send-message re-osc-client host 1 8 vel))
        ((string-match param-name "eq/hi")         (osc-send-message re-osc-client host 1 9 vel))
+       ((string-match param-name "bitsea/lo")     (osc-send-message re-osc-client host 10 103 vel))
+       ((string-match param-name "bitsea/mi")     (osc-send-message re-osc-client host 10 104 vel))
+       ((string-match param-name "bitsea/hi")     (osc-send-message re-osc-client host 10 105 vel))
        (t (osc-send-message rk-osc-client         (format "/%s" param-name) num))))))
 
 (defun code->pots (beg end)
