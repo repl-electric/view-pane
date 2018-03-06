@@ -207,6 +207,7 @@
 (global-set-key (kbd "<f9>")  'perc2-off)
 (global-set-key (kbd "<f10>") 'perc-off)
 (global-set-key (kbd "<f11>") 'snare-off)
+
 (global-set-key (kbd "<f12>") 'drum-off)
 
 (add-to-list 'package-archives
@@ -352,17 +353,18 @@ middle"
   (rk-osc-connect))
 
 (defun push-msg (param-name num)
-  (let ((vel (round (* 127.0 num)))
-        (host "/IAC Bus 1/control_change"))
-    (cond
-     ((string-match param-name "pulse") (osc-send-message re-osc-client host 9 100 vel))
-     ((string-match param-name "wet")   (osc-send-message re-osc-client host 9 101 vel))
-     ((string-match param-name "more")  (osc-send-message re-osc-client host 9 102 vel))
-     ((string-match param-name "noise") (osc-send-message re-osc-client host 9 103 vel))
-     ((string-match param-name "lo")    (osc-send-message re-osc-client host 1 7 vel))
-     ((string-match param-name "mi")    (osc-send-message re-osc-client host 1 8 vel))
-     ((string-match param-name "hi")    (osc-send-message re-osc-client host 1 9 vel))
-     (t (osc-send-message rk-osc-client (format "/%s" param-name) num)))))
+  (when param-name
+    (let ((vel (round (* 127.0 num)))
+          (host "/IAC Bus 1/control_change"))
+      (cond
+       ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 100 vel))
+       ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 101 vel))
+       ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 102 vel))
+       ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 103 vel))
+       ((string-match param-name "eq/lo")         (osc-send-message re-osc-client host 1 7 vel))
+       ((string-match param-name "eq/mi")         (osc-send-message re-osc-client host 1 8 vel))
+       ((string-match param-name "eq/hi")         (osc-send-message re-osc-client host 1 9 vel))
+       (t (osc-send-message rk-osc-client         (format "/%s" param-name) num))))))
 
 (defun code->pots (beg end)
   (interactive "r")
@@ -427,10 +429,18 @@ middle"
          (number (buffer-substring (car bounds) (cdr bounds)))
          (point (point)))
     (goto-char (car bounds))
-    (re-search-backward " \\([a-z]+\\): " nil t)
-    (goto-char (car bounds))
-    (delete-char (length number))
-    (insert (format "%.2f" (funcall func (string-to-number number) (match-string 1))))
+    (re-search-backward "^\\([^\n]+\\): " (line-beginning-position)  t)
+    (let ((m (match-string 1 nil)))
+      (if m
+          (let* ((parts (split-string (string-trim m) " "))
+                 (caller (concat (first parts) "/" (first (reverse parts)))))
+            (goto-char (car bounds))
+            (delete-char (length number))
+            (insert (format "%.2f" (funcall func (string-to-number number) caller))))
+        (progn
+            (goto-char (car bounds))
+            (delete-char (length number))
+            (insert (format "%.2f" (funcall func (string-to-number number) nil))))))
     (goto-char point)))
 
 (defun inc-float-at-point ()
