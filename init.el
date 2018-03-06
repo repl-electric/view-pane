@@ -436,7 +436,8 @@ middle"
                  (caller (concat (first parts) "/" (first (reverse parts)))))
             (goto-char (car bounds))
             (delete-char (length number))
-            (insert (format "%.2f" (funcall func (string-to-number number) caller))))
+            (insert (format "%.2f" (funcall func (string-to-number number) caller)))
+            (hlt-highlight-regexp-region (car bounds) (point) ".+" 'eval-sonic-pi-flash nil))
         (progn
             (goto-char (car bounds))
             (delete-char (length number))
