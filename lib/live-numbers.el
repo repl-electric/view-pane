@@ -45,6 +45,9 @@
        ((string-match param-name "bitsea_cc/motion") (osc-send-message re-osc-client host 10 1 vel))
        ((string-match param-name "bitsea_cc/octave") (osc-send-message re-osc-client host 10 106 vel))
        ((string-match param-name "bitsea_cc/formant") (osc-send-message re-osc-client host 10 98 vel))
+       ((string-match param-name "qbitsea/hi")    (osc-send-message re-osc-client host 4 114 vel))
+       ((string-match param-name "qbitsea/lo")    (osc-send-message re-osc-client host 4 113 vel))
+       ((string-match param-name "qbitsea/mi")    (osc-send-message re-osc-client host 4 115 vel))
 
        (t (osc-send-message rk-osc-client         (format "/%s" param-name) num))))))
 
