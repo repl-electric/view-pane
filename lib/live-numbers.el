@@ -33,9 +33,9 @@
           (host "/IAC Bus 1/control_change"))
       (cond
        ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 100 vel))
-       ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 101 vel))
-       ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 102 vel))
-       ((string-match param-name "zero_cc/pulse") (osc-send-message re-osc-client host 9 103 vel))
+       ((string-match param-name "zero_cc/wet")   (osc-send-message re-osc-client host 9 101 vel))
+       ((string-match param-name "zero_cc/more")  (osc-send-message re-osc-client host 9 102 vel))
+       ((string-match param-name "zero_cc/noise") (osc-send-message re-osc-client host 9 103 vel))
        ((string-match param-name "eq/lo")         (osc-send-message re-osc-client host 1 7 vel))
        ((string-match param-name "eq/mi")         (osc-send-message re-osc-client host 1 8 vel))
        ((string-match param-name "eq/hi")         (osc-send-message re-osc-client host 1 9 vel))
