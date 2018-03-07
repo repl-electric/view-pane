@@ -73,7 +73,10 @@
                               "▒░"
                               pad
                               "╢"))
-              (put-text-property start-pnt (point) 'read-only t)))))
+              (hlt-highlight-regexp-region (+ 3 start-pnt) (point) ".+" 'eval-sonic-pi-flash nil)
+              (put-text-property start-pnt (point) 'read-only t)
+
+              ))))
       (align-regexp beg (+ (* i 106) end) "\\(\\s-*\\)#"))))
 
 (defun pots-update (new-number old-number)
