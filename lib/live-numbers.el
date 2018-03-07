@@ -43,6 +43,9 @@
        ((string-match param-name "bitsea/mi")     (osc-send-message re-osc-client host 10 104 vel))
        ((string-match param-name "bitsea/hi")     (osc-send-message re-osc-client host 10 105 vel))
        ((string-match param-name "bitsea_cc/motion") (osc-send-message re-osc-client host 10 1 vel))
+       ((string-match param-name "bitsea_cc/octave") (osc-send-message re-osc-client host 10 106 vel))
+       ((string-match param-name "bitsea_cc/formant") (osc-send-message re-osc-client host 10 98 vel))
+
        (t (osc-send-message rk-osc-client         (format "/%s" param-name) num))))))
 
 (defun code->pots (beg end)
