@@ -115,7 +115,7 @@
     (let ((m (match-string 1 nil)))
       (if m
           (let* ((parts (split-string (string-trim m) " "))
-                 (caller (concat (first parts) "/" (first (reverse parts)))))
+                 (caller (concat (replace-regexp-in-string "^#" "" (first parts)) "/" (first (reverse parts)))))
             (goto-char (car bounds))
             (delete-char (length number))
             (insert (format "%.2f" (funcall func (string-to-number number) caller)))
